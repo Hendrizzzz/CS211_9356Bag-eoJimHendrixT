@@ -1,19 +1,24 @@
-package prelim;
+package prelim.FixedArray;
+
+import prelim.ListOverflowException;
+import prelim.MyList;
 
 import java.util.NoSuchElementException;
 
 public class MyFixedSizeArrayList<T> implements MyList<T> {
 
     private final T[] array;
+    private int size;
 
     @SuppressWarnings("unchecked")
     public MyFixedSizeArrayList() {
         array = (T[]) new Object[5];
+        size = 0;
     }
 
     @Override
     public int getSize() {
-        return array.length;
+        return size;
     }
 
     @Override
@@ -21,6 +26,7 @@ public class MyFixedSizeArrayList<T> implements MyList<T> {
         for (int i = 0; i < 5; i++){
             if (array[i] == null){
                 array[i] = data;
+                size++;
                 return;
             }
         }
@@ -50,6 +56,7 @@ public class MyFixedSizeArrayList<T> implements MyList<T> {
                     array[j] = array[j + 1];
                 }
                 array[array.length - 1] = null;
+                size--;
 
                 return true;
             }
@@ -65,5 +72,16 @@ public class MyFixedSizeArrayList<T> implements MyList<T> {
             }
         }
         return -1;
+    }
+
+    public T indexOf (int index) {
+        return array[index];
+    }
+
+    public void set(int index, T object) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        array[index] = object;
     }
 }

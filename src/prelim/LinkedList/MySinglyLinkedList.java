@@ -1,4 +1,6 @@
-package prelim;
+package prelim.LinkedList;
+
+import prelim.MyList;
 
 import java.util.NoSuchElementException;
 

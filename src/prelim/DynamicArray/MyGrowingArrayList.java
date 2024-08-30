@@ -1,8 +1,10 @@
-package prelim;
+package prelim.DynamicArray;
+
+import prelim.MyList;
 
 import java.util.NoSuchElementException;
 
-public class MyGrowingArrayList<T> implements MyList<T>{
+public class MyGrowingArrayList<T> implements MyList<T> {
 
     private T[] array;
     private int size;

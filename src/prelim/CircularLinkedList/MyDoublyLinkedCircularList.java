@@ -1,19 +1,24 @@
-package prelim;
+package prelim.CircularLinkedList;
+
+import prelim.DoublyLinkedNode;
+import prelim.MyList;
 
 import java.util.NoSuchElementException;
 
-public class MyDoublyLinkedList<T> implements MyList<T>{
-    private DoublyLinkedNode<T> root;
+public class MyDoublyLinkedCircularList<T> implements MyList<T> {
+    private DoublyLinkedNode<T> head;
+    private DoublyLinkedNode<T> tail;
     private int size;
 
-    public MyDoublyLinkedList() {
-        this.root = null;
+
+    public MyDoublyLinkedCircularList() {
+        this.head = null;
         this.size = 0;
     }
 
-    public MyDoublyLinkedList(T data) {
-        this.root = new DoublyLinkedNode<>(data);
-        this.root.setPrevious(null); // The first element in a doubly-LinkedList is none
+    public MyDoublyLinkedCircularList(T data) {
+        this.head = new DoublyLinkedNode<>(data);
+        this.head.setPrevious(null); // The first element in a doubly-LinkedList is none
         this.size = 1;
     }
 
@@ -26,24 +31,30 @@ public class MyDoublyLinkedList<T> implements MyList<T>{
 
     @Override
     public void insert(T data) {
-        root = insertRecursion(data, this.root);
+        head = insertRecursion(data, this.head);
     }
 
     private DoublyLinkedNode<T> insertRecursion(T data, DoublyLinkedNode<T> node) {
         if (node == null){
             size++;
-            return new DoublyLinkedNode<>(data);
+            DoublyLinkedNode<T> nodeToInsert = new DoublyLinkedNode<>(data);
+            if (size == 1) this.head = nodeToInsert;
+            return nodeToInsert;
         }
 
-        node.setNext(insertRecursion(data, node.getNext()));
-        node.getNext().setPrevious(node);
+        if (size > 1) {
+            node.setNext(insertRecursion(data, node.getNext()));
+            node.getNext().setPrevious(node); // Set Previous of the inserted element
+            node.getNext().setNext(this.head); // Set the next of tail element to the head
+            this.head.setPrevious(node.getNext()); // set the previous of the head to the tail
+        }
         return node;
     }
 
 
     @Override
     public T getElement(T data) throws NoSuchElementException {
-        return getElementRecursion(data, root);
+        return getElementRecursion(data, head);
     }
 
     private T getElementRecursion(T data, DoublyLinkedNode<T> node) {
@@ -60,17 +71,17 @@ public class MyDoublyLinkedList<T> implements MyList<T>{
 
     @Override
     public boolean delete(T data) {
-        if (this.root == null)
+        if (this.head == null)
             return false;
 
-        if (this.root.getData().equals(data)){
-            this.root = null;
+        if (this.head.getData().equals(data)){
+            this.head = null;
             this.size = 0;
             return true;
         }
 
         else
-            return deleteRecursion(data, root, 0);
+            return deleteRecursion(data, head, 0);
     }
 
     private boolean deleteRecursion(T data, DoublyLinkedNode<T> node, int newSize) {
@@ -81,7 +92,7 @@ public class MyDoublyLinkedList<T> implements MyList<T>{
             return true;
         }
 
-        else if (root.getNext() == null)
+        else if (head.getNext() == null)
             return false;
 
         else
@@ -93,7 +104,7 @@ public class MyDoublyLinkedList<T> implements MyList<T>{
     @Override
     public int search(T data) {
         int index = 0;
-        return searchRecursion(data, this.root, index);
+        return searchRecursion(data, this.head, index);
     }
 
     // If the list is 3rd in the list, it will return its index, which is 2

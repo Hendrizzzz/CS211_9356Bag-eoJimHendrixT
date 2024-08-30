@@ -1,4 +1,4 @@
-package prelim;
+package prelim.LinkedList;
 
 // Node for singly-linked list
 public class Node<T> {

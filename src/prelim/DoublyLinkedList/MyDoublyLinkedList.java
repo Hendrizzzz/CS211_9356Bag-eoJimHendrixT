@@ -1,17 +1,20 @@
-package prelim;
+package prelim.DoublyLinkedList;
+
+import prelim.DoublyLinkedNode;
+import prelim.MyList;
 
 import java.util.NoSuchElementException;
 
-public class MyDoublyLinkedCircularList<T> implements MyList<T>{
+public class MyDoublyLinkedList<T> implements MyList<T> {
     private DoublyLinkedNode<T> root;
     private int size;
 
-    public MyDoublyLinkedCircularList() {
+    public MyDoublyLinkedList() {
         this.root = null;
         this.size = 0;
     }
 
-    public MyDoublyLinkedCircularList(T data) {
+    public MyDoublyLinkedList(T data) {
         this.root = new DoublyLinkedNode<>(data);
         this.root.setPrevious(null); // The first element in a doubly-LinkedList is none
         this.size = 1;
@@ -35,10 +38,10 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T>{
             return new DoublyLinkedNode<>(data);
         }
 
-        node.setNext(insertRecursion(data, node.getNext()));
-        node.getNext().setPrevious(node);
-        node.getNext().setNext(this.root); // set the next of tail element to the root (head)
-        this.root.setPrevious(node.getNext()); // set the previous of the root (head) to the tail
+        if (size > 1) {
+            node.setNext(insertRecursion(data, node.getNext()));
+            node.getNext().setPrevious(node);
+        }
         return node;
     }
 
