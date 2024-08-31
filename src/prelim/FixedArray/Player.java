@@ -1,5 +1,11 @@
 package prelim.FixedArray;
 
+
+/**
+ * The Player class represents a basketball player and stores their
+ * statistical performance, including points, rebounds, assists, steals, blocks, and more.
+ * It also calculates the player's MVP score based on weighted statistics.
+ */
 public class Player implements Comparable<Player>{
     private String position;
     private byte jerseyNumber;
@@ -29,6 +35,23 @@ public class Player implements Comparable<Player>{
 
 
 
+
+    /**
+     * Constructs a Player object with specific performance stats.
+     *
+     * @param position The player's position on the court.
+     * @param jerseyNumber The player's jersey number.
+     * @param lastName The player's last name.
+     * @param firstName The player's first name.
+     * @param points The player's points scored.
+     * @param rebounds The player's rebounds.
+     * @param assists The player's assists.
+     * @param steals The player's steals.
+     * @param blocks The player's blocks.
+     * @param plusMinus The player's plus-minus statistic.
+     * @param fGA The player's field goals attempted.
+     * @param fGM The player's field goals made.
+     */
     public Player(String position, byte jerseyNumber, String lastName,
                   String firstName, byte points, byte rebounds, byte assists,
                   byte steals, byte blocks, byte plusMinus, byte fGA, byte fGM)
@@ -47,15 +70,21 @@ public class Player implements Comparable<Player>{
         this.fGM = fGM;
         this.fgPercentage = (double) fGM /fGA;
 
+        // Calculate the mvp Score based on the weighted performance stats
         this.mvpScore = POINTS_WEIGHT * points + REBOUNDS_WEIGHT * rebounds + ASSISTS_WEIGHT * assists +
                 STEALS_WEIGHT * steals + BLOCKS_WEIGHT * blocks + FG_PERCENTAGE_WEIGHT * fgPercentage + 
                 PLUS_MINUS_WEIGHT *  + FGM_WEIGHT * fGM - FGA_WEIGHT * fGA;
     }
 
+    /**
+     * Default constructor for Player.
+     */
     public Player()  {
 
     }
 
+
+    // Getters and Setters for player properties
     public String getPosition() {
         return position;
     }
@@ -177,11 +206,25 @@ public class Player implements Comparable<Player>{
         return mvpScore;
     }
 
+
+    /**
+     * Compares this player to another player by their combined first and last names.
+     *
+     * @param otherPlayer The other player to compare with.
+     * @return A negative integer, zero, or a positive integer if this player is less than,
+     * equal to, or greater than the other player, respectively.
+     */
     @Override
     public int compareTo(Player otherPlayer) {
         return (this.lastName + this.firstName).compareTo(otherPlayer.firstName + otherPlayer.lastName);
     }
 
+
+    /**
+     * Returns a string representation of the player.
+     *
+     * @return A formatted string with the player's details and MVP score.
+     */
     @Override
     public String toString() {
         return "#" + jerseyNumber + "  " +  lastName + ", " + firstName + "\n" +
@@ -192,10 +235,17 @@ public class Player implements Comparable<Player>{
                 "Steals : " + steals + "\n" +
                 "Blocks : " + blocks + "\n" +
                 "Plus/Minus : " + plusMinus + "\n" +
-                "FG% : " + fgPercentage + "\n" +
+                String.format("FG%% : %.2f%%\n", fgPercentage * 100) + "\n" +
                 "MVP WEIGHT: " + mvpScore;
     }
 
+
+    /**
+     * Checks if this player is equal to another object based on their first and last names.
+     *
+     * @param obj The object to compare with.
+     * @return True if the object is equal to this player, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;  // Check if both references are the same
@@ -205,4 +255,19 @@ public class Player implements Comparable<Player>{
         Player other = (Player) obj;
         return firstName.equals(other.firstName) && lastName.equals(other.lastName);
     }
-}
+
+    /**
+     * We override the 'equals' method, so we must also override the hashCode method
+     *
+     * @return The hash code value for this player.
+     */
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        return result;
+    }
+
+
+
+} // end of the player class

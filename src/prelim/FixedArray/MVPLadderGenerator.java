@@ -1,15 +1,27 @@
 package prelim.FixedArray;
 
 import prelim.ListOverflowException;
-
 import java.io.*;
 
+
+/**
+ * The MVPLadderGenerator class generates an MVP ladder for basketball players
+ * based on their performance in a single game.
+ * The class allows users to input
+ * player data, sort players by their MVP score, and save the data.
+ */
 public class MVPLadderGenerator implements Runnable{
     private static final String BOLD = "\033[1m";
     private static final String RESET = "\033[0m";
     private static MyFixedSizeArrayList<Player> players = new MyFixedSizeArrayList<>();
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+
+    /**
+     * Main method to start the program. Initializes the MVPLadderGenerator and runs the thread.
+     *
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         MVPLadderGenerator myProgram;
         try {
@@ -23,6 +35,10 @@ public class MVPLadderGenerator implements Runnable{
         }
     }
 
+
+    /**
+     * Starts the program, shows menu options, and handles user input to perform actions.
+     */
     private void start() {
         pressEnter();
         readPlayers();
@@ -45,6 +61,9 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
+    /**
+     * Reads player data from a file and adds them to the player list.
+     */
     private void readPlayers() {
         try (BufferedReader reader = new BufferedReader(new FileReader("src/prelim/FixedArray/Players.txt"))) {
             String line;
@@ -71,6 +90,11 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
+    /**
+     * Reads user input for menu choice and validates it.
+     *
+     * @return The user's menu choice as a byte.
+     */
     private byte readChoice() {
         showMenu();
 
@@ -92,6 +116,10 @@ public class MVPLadderGenerator implements Runnable{
         }
     }
 
+
+    /**
+     * Displays the menu options to the user.
+     */
     private void showMenu() {
         System.out.println("""
                 Choose an option:
@@ -107,6 +135,9 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
+    /**
+     * Prompts the user to press Enter to continue.
+     */
     private void pressEnter() {
         System.out.println("Press " + BOLD + "'Enter'" + RESET + " to continue. ");
         try {
@@ -117,6 +148,12 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
+    /**
+     * Reads player details from the user input and returns a Player object.
+     *
+     * @param i The index of the player being input.
+     * @return The Player object created from the user input.
+     */
     private Player readPlayer(int i) {
         System.out.println(BOLD + "\n\nPlayer " + i + ": " + RESET);
 
@@ -151,6 +188,12 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
+
+    /**
+     * Reads and validates the player's position input.
+     *
+     * @return The player's position as a string.
+     */
     private String readPosition() {
         while (true) {
             try {
@@ -171,11 +214,19 @@ public class MVPLadderGenerator implements Runnable{
                 };
 
             } catch (IOException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e){
                 System.out.println("Invalid input. Please enter a number. ");
             }
         }
     }
 
+
+    /**
+     * Reads and validates a string input from the user.
+     *
+     * @return The user input as a string.
+     */
     private String readString() {
         while (true) {
 
@@ -195,6 +246,13 @@ public class MVPLadderGenerator implements Runnable{
         }
     }
 
+
+    /**
+     * Reads and validates a byte input from the user, with an option to check for positive values.
+     *
+     * @param isStatPositive Indicates if the stat should be positive.
+     * @return The byte value of the user input.
+     */
     private byte readByte(boolean isStatPositive) {
         while (true) {
             try {
@@ -209,13 +267,17 @@ public class MVPLadderGenerator implements Runnable{
 
                 return stat;
             } catch (IOException e) {
-                System.out.println("Invalid input. Please enter a number. ");
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. The stat is unusually high and not possible in a game or The input you entered is not an integer. ");
             }
         }
     }
 
 
-
+    /**
+     * Fills the player list with player data entered by the user.
+     */
     private void fillPlayers() {
         System.out.println("\nEnter 5 players and their corresponding game stats. ");
 
@@ -230,6 +292,9 @@ public class MVPLadderGenerator implements Runnable{
         System.out.println("\n");
     }
 
+    /**
+     * Adds one player to the player list based on user input.
+     */
     private void add1Player() {
         int size = players.getSize();
         try {
@@ -240,6 +305,10 @@ public class MVPLadderGenerator implements Runnable{
         System.out.println("\n");
     }
 
+
+    /**
+     * Removes a player from the player list based on user input.
+     */
     private void remove1Player() {
         System.out.println("Enter the name of the Player you want to remove. ");
         Player player = formPlayer();
@@ -254,6 +323,12 @@ public class MVPLadderGenerator implements Runnable{
         System.out.println("\n");
     }
 
+
+    /**
+     * Forms a Player object based on user input for removal or search operations.
+     *
+     * @return The Player object with the user's input details.
+     */
     private Player formPlayer() {
         System.out.print("Last Name : ");
         String lastName = readString();
@@ -267,6 +342,10 @@ public class MVPLadderGenerator implements Runnable{
         return player;
     }
 
+
+    /**
+     * Displays the details of a player based on user input.
+     */
     private void checkAPlayer() {
         System.out.println("Enter the name of the Player you want to check. ");
         Player player = formPlayer();
@@ -274,17 +353,25 @@ public class MVPLadderGenerator implements Runnable{
         int index = players.search(player);
 
         if (index != -1) {
-            System.out.println(players.getElement(player));
+            System.out.println("\n" + players.getElement(player));
         } else {
             System.out.println("Player is not in the list. ");
         }
         System.out.println("\n");
     }
 
+
+    /**
+     * Clears all players from the player list.
+     */
     private void clearAllPlayers() {
         players = new MyFixedSizeArrayList<>();
     }
 
+
+    /**
+     * Sorts the players by their MVP score in descending order and displays the MVP ladder.
+     */
     private void showMVPLadder() {
         sortPlayers();
         if (players.getSize() != 5){
@@ -298,24 +385,10 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
-
-    private void save() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/prelim/FixedArray/Players.txt"))) {
-            for (int i = 0; i < players.getSize(); i++) {
-                Player player = players.indexOf(i);
-                writer.write(player.getPosition() + "," + player.getJerseyNumber() + "," + player.getLastName() + "," +
-                                player.getFirstName() + "," + player.getPoints() + "," + player.getRebounds() + "," +
-                                player.getAssists() + "," + player.getSteals() + "," + player.getBlocks() + "," +
-                                player.getPlusMinus() + "," + player.getfGA() + "," + player.getfGM());
-                writer.newLine();
-            }
-            System.exit(0);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
+    /**
+     * Sorts the players in descending order based on their MVP scores
+     * using the selection sort algorithm.
+     */
     private void sortPlayers() {
         for (int i = 0; i < players.getSize() - 1; i++) {
             // Assume the minimum element is at the current position
@@ -338,7 +411,29 @@ public class MVPLadderGenerator implements Runnable{
     }
 
 
+    /**
+     * Saves the player data to a file.
+     */
+    private void save() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/prelim/FixedArray/Players.txt"))) {
+            for (int i = 0; i < players.getSize(); i++) {
+                Player player = players.indexOf(i);
+                writer.write(player.getPosition() + "," + player.getJerseyNumber() + "," + player.getLastName() + "," +
+                                player.getFirstName() + "," + player.getPoints() + "," + player.getRebounds() + "," +
+                                player.getAssists() + "," + player.getSteals() + "," + player.getBlocks() + "," +
+                                player.getPlusMinus() + "," + player.getfGA() + "," + player.getfGM());
+                writer.newLine();
+            }
+            System.exit(0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+
+    /**
+     * Runs the program. This method is called when the thread starts.
+     */
     @Override
     public void run() {
         try {
@@ -370,4 +465,5 @@ public class MVPLadderGenerator implements Runnable{
             throw new RuntimeException(e);
         }
     }
-}
+
+} // end of the program
