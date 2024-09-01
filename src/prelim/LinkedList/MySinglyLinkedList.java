@@ -108,6 +108,24 @@ public class MySinglyLinkedList<T> implements MyList<T> {
 
         else
             return searchRecursion(data, root.getNext(), ++index);
+    }
 
+
+    public T get(int index) {
+        if (index < 0 || (index != 0 && index >= size))
+            throw new IndexOutOfBoundsException();
+
+        return getRecursion(index, root, 0);
+    }
+
+
+    private T getRecursion(int indexToReturn, Node<T> root, int currentIndex) {
+        if (currentIndex == indexToReturn) {
+            return root.getData();
+        }
+        else if (currentIndex > indexToReturn)
+            throw new IndexOutOfBoundsException();
+
+        return getRecursion(indexToReturn, root.getNext(), ++currentIndex);
     }
 }

@@ -1,5 +1,7 @@
 package prelim.LinkedList;
 
+import java.util.Objects;
+
 // Node for singly-linked list
 public class Node<T> {
     private T data;
@@ -8,6 +10,21 @@ public class Node<T> {
 
     public Node() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Node<?> node = (Node<?>) o;
+
+        return Objects.equals(data, node.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return data != null ? data.hashCode() : 0;
     }
 
     public Node(T data){
