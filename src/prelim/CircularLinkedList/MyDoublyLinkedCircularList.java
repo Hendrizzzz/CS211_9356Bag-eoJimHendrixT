@@ -31,6 +31,7 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
 
     @Override
     public void insert(T data) {
+        this.tail.setNext(null);
         head = insertRecursion(data, this.head);
     }
 
@@ -38,16 +39,20 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
         if (node == null){
             size++;
             DoublyLinkedNode<T> nodeToInsert = new DoublyLinkedNode<>(data);
-            if (size == 1) this.head = nodeToInsert;
+            if (size == 1)
+                this.head = nodeToInsert;
+            else {
+                nodeToInsert = tail;
+                this.head.setPrevious(nodeToInsert);
+                this.tail.setNext(head);
+            }
+
             return nodeToInsert;
         }
 
-        if (size > 1) {
-            node.setNext(insertRecursion(data, node.getNext()));
-            node.getNext().setPrevious(node); // Set Previous of the inserted element
-            node.getNext().setNext(this.head); // Set the next of tail element to the head
-            this.head.setPrevious(node.getNext()); // set the previous of the head to the tail
-        }
+        node.setNext(insertRecursion(data, node.getNext()));
+        node.getNext().setPrevious(node); // Set Previous of the inserted element
+
         return node;
     }
 
@@ -81,22 +86,30 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
         }
 
         else
-            return deleteRecursion(data, head, 0);
+            return deleteRecursion(data, head);
     }
 
-    private boolean deleteRecursion(T data, DoublyLinkedNode<T> node, int newSize) {
-        // Check if the next item in the list is the item to be deleted. If so, then set that pointer to null, cutting ties with the rest.
+    private boolean deleteRecursion(T data, DoublyLinkedNode<T> node) {
         if (node.getNext() != null && node.getNext().getData().equals(data)){
-            node.setNext(null);
-            this.size = newSize;
+            node.setNext(node.getNext().getNext());
+            if (node.getNext() != null)
+                node.getNext().setPrevious(node); // Set the previous of the new next node to the current node
+
+            else {
+                this.tail = node;
+                node.setNext(head);
+                head.setPrevious(node);
+            }
+
+            --this.size;
             return true;
         }
 
-        else if (head.getNext() == null)
+        else if (node.getNext() == null)
             return false;
 
         else
-            return deleteRecursion(data, node.getNext(), ++newSize); // Count the newSize as we traverse into the nodes
+            return deleteRecursion(data, node.getNext()); // Count the newSize as we traverse into the nodes
 
     }
 

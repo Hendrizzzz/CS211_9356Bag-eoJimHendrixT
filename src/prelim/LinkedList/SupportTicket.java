@@ -1,7 +1,30 @@
 package prelim.LinkedList;
 
+import java.util.Objects;
+
 public class SupportTicket {
     private Customer customer;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SupportTicket that = (SupportTicket) o;
+
+        if (ticketNumber != that.ticketNumber) return false;
+        if (!Objects.equals(title, that.title)) return false;
+        return Objects.equals(issueDescription, that.issueDescription);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (issueDescription != null ? issueDescription.hashCode() : 0);
+        result = 31 * result + ticketNumber;
+        return result;
+    }
+
     private String title;
     private String issueDescription;
     private int ticketNumber;

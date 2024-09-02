@@ -70,27 +70,27 @@ public class MySinglyLinkedList<T> implements MyList<T> {
         }
 
         if (root.getData().equals(data)){
-            root = null;
-            this.size = 0;
+            root = root.getNext();
+            this.size--;
             return true;
         }
 
         else
-            return deleteRecursion(data, root, 0);
+            return deleteRecursion(data, root);
     }
 
-    private boolean deleteRecursion(T data, Node<T> root, int newSize) {
+    private boolean deleteRecursion(T data, Node<T> root) {
         if (root.getNext() == null)
             return false;
 
         else if (root.getNext().getData().equals(data)){
-            root.setNext(null); // Deleting an element here means if you delete the 4th element, 5th and so on will also be deleted
-            this.size = newSize;
+            root.setNext(root.getNext().getNext()); // skip the data to delete in the list
+            --this.size;
             return true;
         }
 
         else
-            return deleteRecursion(data, root.getNext(), ++newSize); // Count the newSize as we traverse into the nodes
+            return deleteRecursion(data, root.getNext());
     }
 
     @Override

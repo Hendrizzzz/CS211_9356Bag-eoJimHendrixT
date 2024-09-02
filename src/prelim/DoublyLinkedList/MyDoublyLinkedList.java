@@ -75,22 +75,25 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
         }
 
         else
-            return deleteRecursion(data, root, 0);
+            return deleteRecursion(data, root);
     }
 
-    private boolean deleteRecursion(T data, DoublyLinkedNode<T> node, int newSize) {
-        // Check if the next item in the list is the item to be deleted. If so, then set that pointer to null, cutting ties with the rest.
+        private boolean deleteRecursion(T data, DoublyLinkedNode<T> node) {
         if (node.getNext() != null && node.getNext().getData().equals(data)){
-            node.setNext(null);
-            this.size = newSize;
+            node.setNext(node.getNext().getNext());
+
+            if (node.getNext() != null)
+                node.getNext().setPrevious(node);
+
+            --this.size;
             return true;
         }
 
-        else if (root.getNext() == null)
+        else if (root.getNext() == null) // Means it traversed already the entire list and the data to be deleted is not in the list
             return false;
 
         else
-            return deleteRecursion(data, node.getNext(), ++newSize); // Count the newSize as we traverse into the nodes
+            return deleteRecursion(data, node.getNext());
 
     }
 
