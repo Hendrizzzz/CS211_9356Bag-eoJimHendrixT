@@ -31,29 +31,32 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
 
     @Override
     public void insert(T data) {
-        this.tail.setNext(null);
-        head = insertRecursion(data, this.head);
+        if (this.head == null) {
+            DoublyLinkedNode<T> nodeToInsert = new DoublyLinkedNode<>(null, data, null);
+            this.head = nodeToInsert;
+            this.tail = nodeToInsert;
+        }
+        else {
+            tail.setNext(null);
+            head.setNext(insertRecursion(data, this.head.getNext(), this.head));
+        }
+
+        size++;
     }
 
-    private DoublyLinkedNode<T> insertRecursion(T data, DoublyLinkedNode<T> node) {
-        if (node == null){
-            size++;
-            DoublyLinkedNode<T> nodeToInsert = new DoublyLinkedNode<>(data);
-            if (size == 1)
-                this.head = nodeToInsert;
-            else {
-                nodeToInsert = tail;
-                this.head.setPrevious(nodeToInsert);
-                this.tail.setNext(head);
-            }
+    private DoublyLinkedNode<T> insertRecursion(T data, DoublyLinkedNode<T> current, DoublyLinkedNode<T> prev) {
+        if (current == null){
+            DoublyLinkedNode<T> nodeToInsert = new DoublyLinkedNode<>(prev, data, null);
+
+            this.tail = nodeToInsert;
+            this.head.setPrevious(tail);
+            this.tail.setNext(head);
 
             return nodeToInsert;
         }
 
-        node.setNext(insertRecursion(data, node.getNext()));
-        node.getNext().setPrevious(node); // Set Previous of the inserted element
-
-        return node;
+        current.setNext(insertRecursion(data, current.getNext(), current));
+        return current;
     }
 
 

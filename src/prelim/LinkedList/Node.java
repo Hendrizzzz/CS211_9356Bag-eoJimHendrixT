@@ -12,6 +12,11 @@ public class Node<T> {
 
     }
 
+    public Node(T data, Node<T> next) {
+        this.data = data;
+        this.next = next;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -6,18 +6,23 @@ import java.util.NoSuchElementException;
 
 public class MySinglyLinkedList<T> implements MyList<T> {
 
-
-    private Node<T> root;
+    private Node<T> head;
+    private Node<T> tail;
 
     private int size;
 
     public MySinglyLinkedList() {
-        this.root = null;
+        this.head = null;
+        this.tail = null;
         this.size = 0;
     }
 
     public MySinglyLinkedList(T data) {
-        this.root = new Node<>(data);
+        // Set the first element both head and tail
+        this.head = new Node<>(data);
+        this.head.setNext(null);
+        this.tail = new Node<>(data);
+        this.tail.setNext(null);
         this.size = 1;
     }
 
@@ -29,85 +34,85 @@ public class MySinglyLinkedList<T> implements MyList<T> {
 
     @Override
     public void insert(T data) {
-        if (this.root == null)
-            this.root = new Node<>(data);
+        if (this.head == null)
+            this.head = new Node<>(data, null);
 
         else
-            insertRecursion(data, root);
+            insertRecursion(data, head);
 
         size++;
     }
 
-    private void insertRecursion(T data, Node<T> root) {
-        if (root.getNext() == null){
-            root.setNext(new Node<>(data));
+    private void insertRecursion(T data, Node<T> node) {
+        if (node.getNext() == null){
+            node.setNext(new Node<>(data));
             return;
         }
 
-        insertRecursion(data, root.getNext());
+        insertRecursion(data, node.getNext());
     }
 
     @Override
     public T getElement(T data) throws NoSuchElementException {
-        return getElementRecursion(data, root);
+        return getElementRecursion(data, this.head);
     }
 
-    private T getElementRecursion(T data, Node<T> root) {
-        if (root == null)
+    private T getElementRecursion(T data, Node<T> node) {
+        if (node == null)
             throw new NoSuchElementException("Element " + data + " is not in the list. ");
 
-        else if (root.getData().equals(data))
-            return root.getData();
+        else if (node.getData().equals(data))
+            return node.getData();
 
         else
-            return getElementRecursion(data, root.getNext());
+            return getElementRecursion(data, node.getNext());
     }
 
     @Override
     public boolean delete(T data) {
-        if (this.root == null){
+        if (this.head == null){
             return false;
         }
 
-        if (root.getData().equals(data)){
-            root = root.getNext();
+        if (this.head.getData().equals(data)){
+            this.head = this.head.getNext();
             this.size--;
             return true;
         }
 
         else
-            return deleteRecursion(data, root);
+            return deleteRecursion(data, this.head);
     }
 
-    private boolean deleteRecursion(T data, Node<T> root) {
-        if (root.getNext() == null)
+    private boolean deleteRecursion(T data, Node<T> node) {
+        if (node.getNext() == null)
             return false;
 
-        else if (root.getNext().getData().equals(data)){
-            root.setNext(root.getNext().getNext()); // skip the data to delete in the list
+        else if (node.getNext().getData().equals(data)){
+            node.setNext(node.getNext().getNext()); // skip the data to delete in the list
             --this.size;
             return true;
         }
 
         else
-            return deleteRecursion(data, root.getNext());
+            return deleteRecursion(data, node.getNext());
     }
 
     @Override
     public int search(T data) {
         int index = 0;
-        return searchRecursion(data, root, index);
+        return searchRecursion(data, this.head, index);
     }
 
-    private int searchRecursion(T data, Node<T> root, int index) {
-        if (root == null) // Means the element is not present in this LinkedList
+    private int searchRecursion(T data, Node<T> node, int index) {
+        if (node == null) // Means the element is not present in this LinkedList
             return -1;
 
-        else if (root.getData().equals(data))
+        else if (node.getData().equals(data))
             return index;
 
         else
-            return searchRecursion(data, root.getNext(), ++index);
+            return searchRecursion(data, node.getNext(), ++index);
     }
 
 
@@ -115,17 +120,14 @@ public class MySinglyLinkedList<T> implements MyList<T> {
         if (index < 0 || (index != 0 && index >= size))
             throw new IndexOutOfBoundsException();
 
-        return getRecursion(index, root, 0);
+        return getRecursion(index, this.head, 0);
     }
 
 
-    private T getRecursion(int indexToReturn, Node<T> root, int currentIndex) {
-        if (currentIndex == indexToReturn) {
-            return root.getData();
-        }
-        else if (currentIndex > indexToReturn)
-            throw new IndexOutOfBoundsException();
+    private T getRecursion(int indexToReturn, Node<T> node, int currentIndex) {
+        if (currentIndex == indexToReturn)
+            return node.getData();
 
-        return getRecursion(indexToReturn, root.getNext(), ++currentIndex);
+        return getRecursion(indexToReturn, node.getNext(), ++currentIndex);
     }
 }
