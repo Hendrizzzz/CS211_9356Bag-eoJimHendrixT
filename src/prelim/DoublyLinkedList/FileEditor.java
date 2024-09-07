@@ -12,7 +12,7 @@ public class FileEditor {
     private static final String RESET = "\033[0m";
     private static final String GREEN = "\033[32m";
 
-    private static MyDoublyLinkedList<TextFile> textfiles = new MyDoublyLinkedList<>();
+    private static final MyDoublyLinkedList<TextFile> TEXT_FILES = new MyDoublyLinkedList<>();
 
     public static void main(String[] args) {
         FileEditor myProgram;
@@ -107,22 +107,22 @@ public class FileEditor {
 
         String title = stringReader("Title: ", reader);
         TextFile textFile = new TextFile(title, new Date());
-        textfiles.insert(textFile);
+        TEXT_FILES.insert(textFile);
 
         System.out.println(GREEN + "The file has been successfully created. \n" + RESET);
     }
 
     private void openFile(BufferedReader reader) {
-        if (textfiles.getSize() == 0) {
+        if (TEXT_FILES.getSize() == 0) {
             System.out.println(BOLD + "There are no files yet created. \n" + RESET);
             return;
         }
 
         System.out.println(BOLD + "\nOpening a file.... " + RESET);
-        displayTextFiles();
-        byte fileToOpenIndex = readByte("File to Open: ", reader, 1, textfiles.getSize());
+        displayTEXT_FILES();
+        byte fileToOpenIndex = readByte("File to Open: ", reader, 1, TEXT_FILES.getSize());
         while (true) {
-            TextFile textFile = textfiles.get(fileToOpenIndex - 1);
+            TextFile textFile = TEXT_FILES.get(fileToOpenIndex - 1);
             displayFile(fileToOpenIndex, textFile);
             System.out.print("""
                     1. Edit File
@@ -149,10 +149,10 @@ public class FileEditor {
         System.out.println(textFile.toString() + "\n");
     }
 
-    private void displayTextFiles() {
+    private void displayTEXT_FILES() {
         System.out.printf("%-9s%-20s%-30s%n", "File No.", "Title", "Last Modified");
-        for (int i = 0; i < textfiles.getSize(); i++){
-            TextFile tf = textfiles.get(i);
+        for (int i = 0; i < TEXT_FILES.getSize(); i++){
+            TextFile tf = TEXT_FILES.get(i);
             System.out.printf("%-9d%-20s%-30s%n", i + 1, tf.getTitle(), tf.getLastModified());
         }
         System.out.println();
@@ -204,8 +204,8 @@ public class FileEditor {
 
         if (stringReader("Restore a previous version of this file? (Y/N): ", reader).equalsIgnoreCase("Y")) {
             textFile.setContents(textFile.getContents());
-            textfiles.delete(textFile);
-            textfiles.insert(textFile.getVersions().get(versionNumber - 1));
+            TEXT_FILES.delete(textFile);
+            TEXT_FILES.insert(textFile.getVersions().get(versionNumber - 1));
             System.out.println(GREEN + "Restoration complete: The file has been reverted to the earlier version. " + RESET);
         }
     }
@@ -214,7 +214,7 @@ public class FileEditor {
         System.out.println(BOLD + "\nDeleting a file.... " + RESET);
         String title = stringReader("Title: ", reader);
 
-        boolean isDeleted = textfiles.delete(new TextFile(title, new Date()));
+        boolean isDeleted = TEXT_FILES.delete(new TextFile(title, new Date()));
 
         if (isDeleted)
             System.out.println(GREEN + "File has been successfully deleted! " + RESET);

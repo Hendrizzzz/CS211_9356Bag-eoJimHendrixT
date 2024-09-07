@@ -2,8 +2,11 @@ package prelim.LinkedList;
 
 import java.util.Objects;
 
-// Node for singly-linked list
-public class Node<T> implements Comparable<Node<T>> {
+/**
+ * Custom implementation of a node
+ * @param <T> Type of the data of the node
+ */
+public class Node<T> {
     private T data;
     private Node<T> next;
 
@@ -14,7 +17,6 @@ public class Node<T> implements Comparable<Node<T>> {
     public Node() {
 
     }
-
 
     /**
      * Constructor that constructs a node with a value data T
@@ -98,14 +100,8 @@ public class Node<T> implements Comparable<Node<T>> {
         return data != null ? data.hashCode() : 0;
     }
 
-
-    /**
-     * @param other the object to be compared.
-     * @return int the difference of the two data, positive if the former data is greater, otherwise negative
-     */
-    @SuppressWarnings("unchecked")
     @Override
-    public int compareTo(Node<T> other) {
-        return ((Comparable<T>) this.data).compareTo(other.getData());
+    public String toString() {
+        return super.toString();
     }
-}
+} // end of the class
