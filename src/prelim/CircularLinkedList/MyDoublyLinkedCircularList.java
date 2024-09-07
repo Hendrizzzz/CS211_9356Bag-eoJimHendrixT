@@ -23,6 +23,15 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
     }
 
 
+    public DoublyLinkedNode<T> getHead() {
+        return head;
+    }
+
+    public DoublyLinkedNode<T> getTail() {
+        return tail;
+    }
+
+
     @Override
     public int getSize() {
         return this.size;
@@ -133,5 +142,32 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
 
         else
             return searchRecursion(data, node.getNext(), ++index);
+    }
+
+
+    public T get(int index) {
+        if (index < 0 || (index != 0 && index >= size))
+            throw new IndexOutOfBoundsException();
+
+        // Check what end is closest to the index, head or tail? then start the search on that end
+        if (index < this.size - index)
+            return getRecursion(index, this.head, 0);
+        else
+            return getRecursionReversed(index, this.tail, this.size - 1);
+    }
+
+
+    private T getRecursion(int indexToReturn, DoublyLinkedNode<T> node, int currentIndex) {
+        if (currentIndex == indexToReturn)
+            return node.getData();
+
+        return getRecursion(indexToReturn, node.getNext(), ++currentIndex);
+    }
+
+    private T getRecursionReversed(int indexToReturn, DoublyLinkedNode<T> node, int currentIndex) {
+        if (currentIndex == indexToReturn)
+            return node.getData();
+
+        return getRecursionReversed(indexToReturn, node.getPrevious(), --currentIndex);
     }
 }

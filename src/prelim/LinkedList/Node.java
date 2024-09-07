@@ -102,6 +102,6 @@ public class Node<T> {
 
     @Override
     public String toString() {
-        return super.toString();
+        return data.toString();
     }
 } // end of the class

@@ -1,6 +1,7 @@
 package prelim.DoublyLinkedList;
 
 import prelim.DoublyLinkedNode;
+import prelim.LinkedList.Node;
 import prelim.MyList;
 
 import java.util.NoSuchElementException;
@@ -135,13 +136,26 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
         if (index < 0 || (index != 0 && index >= size))
             throw new IndexOutOfBoundsException();
 
-        return getRecursion(index, this.head, 0);
+        // Check what end is closest to the index, head or tail? then start the search on that end
+        if (index < this.size - index)
+            return getRecursion(index, this.head, 0);
+        else
+            return getRecursionReversed(index, this.tail, this.size - 1);
     }
 
-    private T getRecursion(int searchIndex, DoublyLinkedNode<T> current, int currentIndex) {
-        if (searchIndex == currentIndex)
-            return current.getData();
+    private T getRecursion(int indexToReturn, DoublyLinkedNode<T> node, int currentIndex) {
+        if (currentIndex == indexToReturn)
+            return node.getData();
 
-        return getRecursion(searchIndex, current.getNext(), ++currentIndex);
+        return getRecursion(indexToReturn, node.getNext(), ++currentIndex);
     }
+
+    private T getRecursionReversed(int indexToReturn, DoublyLinkedNode<T> node, int currentIndex) {
+        if (currentIndex == indexToReturn)
+            return node.getData();
+
+        return getRecursionReversed(indexToReturn, node.getPrevious(), --currentIndex);
+    }
+
+
 }

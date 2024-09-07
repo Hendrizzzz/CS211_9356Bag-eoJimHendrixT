@@ -1,5 +1,7 @@
 package prelim;
 
+import java.util.Objects;
+
 // Node for a doubly-linked list
 public class DoublyLinkedNode<T> {
     private T data;
@@ -45,5 +47,27 @@ public class DoublyLinkedNode<T> {
 
     public void setPrevious(DoublyLinkedNode<T> previous) {
         this.previous = previous;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DoublyLinkedNode<?> that = (DoublyLinkedNode<?>) o;
+
+        return Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return data != null ? data.hashCode() : 0;
+    }
+
+
+    @Override
+    public String toString() {
+        return data.toString();
     }
 }

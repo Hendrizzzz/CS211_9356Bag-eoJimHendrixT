@@ -1,0 +1,11 @@
+Title,Artist
+Yesterday,The Beatles
+Bohemian Rhapsody,Queen
+Imagine,John Lennon
+Hotel California,Eagles
+Stairway to Heaven,Led Zeppelin
+Hey Jude,The Beatles
+Smells Like Teen Spirit,Nirvana
+What's Going On,Marvin Gaye
+Billie Jean,Michael Jackson
+Like a Rolling Stone,Bob Dylan
