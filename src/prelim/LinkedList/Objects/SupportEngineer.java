@@ -1,4 +1,4 @@
-package prelim.LinkedList;
+package prelim.LinkedList.Objects;
 
 import java.util.Objects;
 

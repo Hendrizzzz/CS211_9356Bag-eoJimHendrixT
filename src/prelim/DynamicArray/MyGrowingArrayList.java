@@ -53,18 +53,18 @@ public class MyGrowingArrayList<T> implements MyArrayList<T> {
     @SuppressWarnings("unchecked")
     @Override
     public void insert(T data) {
-        if (size == array.length) {
+        if (this.size == this.array.length) {
             T[] newArray = (T[]) new Object[size + 5];
 
             // Copy elements to the new array
             for (int i = 0; i < size; i++) {
-                newArray[i] = array[i];
+                newArray[i] = this.array[i];
             }
 
-            array = newArray;
+            this.array = newArray;
         }
 
-        array[size] = data;
+        this.array[size] = data;
         size++;
     }
 
@@ -132,7 +132,7 @@ public class MyGrowingArrayList<T> implements MyArrayList<T> {
      * @throws IndexOutOfBoundsException If the index is out of range.
      */
     @Override
-    public T indexOf(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }

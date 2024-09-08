@@ -48,6 +48,7 @@ public class MusicPlayer {
         System.out.println("Adding a song... ");
         Song song = readSong(reader);
         songs.insert(song);
+        System.out.println(song + " is successfully added in the song list. ");
     }
 
     private Song readSong(BufferedReader reader) {
@@ -59,6 +60,7 @@ public class MusicPlayer {
 
 
     private void deleteSong(BufferedReader reader) {
+        System.out.println("Deleting a song.... ");
         Song song = readSong(reader);
         if (songs.delete(song))
             System.out.println(song + " is successfully deleted!. ");
@@ -67,15 +69,20 @@ public class MusicPlayer {
     }
 
     private void viewSongList() {
+        if (songs.getSize() == 0) {
+            System.out.println("There no currently no songs in the list. ");
+            return;
+        }
         System.out.println("Song List.... ");
-        System.out.printf("%-4s%-20s%-20s%n", "No.", "Title", "Artist");
+        System.out.printf("%-4s%-35s%-35s%n", "No.", "Title", "Artist");
         for (int i = 0; i < songs.getSize(); i++) {
             Song song = songs.get(i);
-            System.out.printf("%-4d%-20s%-20s%n", i + 1, song.getTitle(), song.getArtist());
+            System.out.printf("%-4d%-35s%-35s%n", i + 1, song.getTitle(), song.getArtist());
         }
     }
 
     private void downloadStockMusics() {
+        System.out.println("Downloading stocked musics... ");
         try (BufferedReader reader = new BufferedReader(new FileReader("src/prelim/CircularLinkedList/StockedSongs.txt"))) {
             String line = reader.readLine();
             if (line == null) {

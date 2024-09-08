@@ -1,6 +1,6 @@
 package prelim;
 
 public interface MyArrayList<T> extends MyList<T> {
-    T indexOf(int index);
+    T get(int index);
     void set (int index, T object);
 }

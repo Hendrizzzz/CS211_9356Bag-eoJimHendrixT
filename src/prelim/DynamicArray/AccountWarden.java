@@ -182,7 +182,7 @@ public class AccountWarden {
 
         System.out.println(BOLD + "\nACCOUNTS IN THE VAULT: " + RESET);
         for (int i = 0; i < accounts.getSize(); i++){
-            System.out.println(accounts.indexOf(i).toString(false) + "\n");
+            System.out.println(accounts.get(i).toString(false) + "\n");
         }
         pressEnterToContinue(reader);
     }
@@ -201,7 +201,7 @@ public class AccountWarden {
 
         System.out.println(BOLD + "\nACCOUNTS WITH PASSWORDS IN THE VAULT: " + RESET);
         for (int i = 0; i < accounts.getSize(); i++){
-            System.out.println(accounts.indexOf(i).toString() + "\n");
+            System.out.println(accounts.get(i).toString() + "\n");
         }
         pressEnterToContinue(reader);
     }
@@ -215,7 +215,7 @@ public class AccountWarden {
     private void saveChanges(BufferedReader reader) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))){
             for (int i = 0; i < accounts.getSize(); i++) {
-                Account account = accounts.indexOf(i);
+                Account account = accounts.get(i);
                 writer.write(account.getEmailAddress() + "," + account.getUsername() + "," + account.getPassword());
                 writer.newLine();
             }

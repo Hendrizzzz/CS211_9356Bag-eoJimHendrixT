@@ -380,7 +380,7 @@ public class MVPLadderGenerator implements Runnable{
         }
         System.out.println(BOLD + "MVP LADDER " + RESET);
         for (int i = 0; i < 5; i++){
-            System.out.println(players.indexOf(i).toString() + "\n");
+            System.out.println(players.get(i).toString() + "\n");
         }
     }
 
@@ -396,15 +396,15 @@ public class MVPLadderGenerator implements Runnable{
 
             // Check the rest of the list for a greater element
             for (int j = i + 1; j < players.getSize(); j++) {
-                if (players.indexOf(j).getMvpScore() > players.indexOf(maxIndex).getMvpScore()) {
+                if (players.get(j).getMvpScore() > players.get(maxIndex).getMvpScore()) {
                     maxIndex = j;
                 }
             }
 
             // Swap the found maximum element with the element at the current position
             if (maxIndex != i) {
-                Player temp = players.indexOf(i);
-                players.set(i, players.indexOf(maxIndex));
+                Player temp = players.get(i);
+                players.set(i, players.get(maxIndex));
                 players.set(maxIndex, temp);
             }
         }
@@ -417,7 +417,7 @@ public class MVPLadderGenerator implements Runnable{
     private void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/prelim/FixedArray/Players.txt"))) {
             for (int i = 0; i < players.getSize(); i++) {
-                Player player = players.indexOf(i);
+                Player player = players.get(i);
                 writer.write(player.getPosition() + "," + player.getJerseyNumber() + "," + player.getLastName() + "," +
                                 player.getFirstName() + "," + player.getPoints() + "," + player.getRebounds() + "," +
                                 player.getAssists() + "," + player.getSteals() + "," + player.getBlocks() + "," +

@@ -130,7 +130,7 @@ public class MyFixedSizeArrayList<T> implements MyArrayList<T> {
      * @throws IndexOutOfBoundsException if the index is out of range
      */
     @Override
-    public T indexOf (int index) {
+    public T get (int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }

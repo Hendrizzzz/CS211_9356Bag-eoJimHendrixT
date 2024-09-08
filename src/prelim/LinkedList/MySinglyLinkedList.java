@@ -20,12 +20,18 @@ public class MySinglyLinkedList<T> implements MyList<T> {
     public MySinglyLinkedList(T data) {
         // Set the first element both head and tail
         this.head = new Node<>(data);
-        this.head.setNext(null);
         this.tail = new Node<>(data);
-        this.tail.setNext(null);
         this.size = 1;
     }
 
+
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public Node<T> getTail() {
+        return tail;
+    }
 
     @Override
     public int getSize() {
@@ -45,7 +51,8 @@ public class MySinglyLinkedList<T> implements MyList<T> {
 
     private void insertRecursion(T data, Node<T> node) {
         if (node.getNext() == null){
-            node.setNext(new Node<>(data));
+            node.setNext(new Node<>(data, null));
+            this.tail = node.getNext();
             return;
         }
 
@@ -100,8 +107,7 @@ public class MySinglyLinkedList<T> implements MyList<T> {
 
     @Override
     public int search(T data) {
-        int index = 0;
-        return searchRecursion(data, this.head, index);
+        return searchRecursion(data, this.head, 0);
     }
 
     private int searchRecursion(T data, Node<T> node, int index) {
@@ -114,7 +120,6 @@ public class MySinglyLinkedList<T> implements MyList<T> {
         else
             return searchRecursion(data, node.getNext(), ++index);
     }
-
 
     public T get(int index) {
         if (index < 0 || (index != 0 && index >= size))

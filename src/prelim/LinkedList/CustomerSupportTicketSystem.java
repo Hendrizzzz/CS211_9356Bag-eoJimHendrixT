@@ -1,5 +1,9 @@
 package prelim.LinkedList;
 
+import prelim.LinkedList.Objects.Customer;
+import prelim.LinkedList.Objects.SupportEngineer;
+import prelim.LinkedList.Objects.SupportTicket;
+
 import java.io.*;
 import java.util.NoSuchElementException;
 
@@ -60,9 +64,11 @@ public class CustomerSupportTicketSystem {
             String prompt2 = "Log in (1) or Sign up (0) : ";
 
             // Determine if the user is a support engineer or customer
+            System.out.println("USER TYPE: ");
             boolean isSupportEngineer = readChoice(reader, prompt1);
 
             // Determine if the user wants to log in or sign up
+            System.out.println("ACTION TYPE: ");
             boolean isSignUp = readChoice(reader, prompt2);
 
             if (isSignUp) {
