@@ -8,7 +8,7 @@ After inserting 10 integers into the list, we can view the list by selecting opt
 - Integers added: `5, 10, 15, 20, 25, 30, 35, 40, 45, 50`
 
 ### Screenshot:
-![Insert 10 elements](path_to_screenshot/insert_10_elements.png)
+![Insert 10 elements](src/prelim/LinkedList/ScreenshotsForMDFile/img.png)
 
 ### Description:
 The list displays the elements in the order they were inserted. The traversal shows that the list is correctly connected from head to tail.
@@ -51,7 +51,7 @@ Next, we search for the position of an element within the list.
 - Element to search: `35`
 
 ### Screenshot:
-![Search for element position](![img.png](img.png))
+![Search for element position]()
 
 ### Description:
 The search function successfully located the integer `35` in the list and returned its index.
