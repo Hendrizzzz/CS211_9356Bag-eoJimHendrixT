@@ -1,4 +1,3 @@
 Ashley Jan,1,strongpasswordaj,ashleyjanballesteros@gmail.com,Account Suspension, My account was suspended unexpectedly and I haven’t received any clear information on why. I need to understand what happened and how to restore my access as soon as possible.,8,Open
 Kurt Ivan,2,strongpasswordki,kurtivanlopez@gmail.com,Log-in Issues,I can't log in to my account even though I'm sure I'm entering the correct credentials. This is stopping me from accessing the system and getting my work done.,5,Open
 Ryan Consolacion,3,strongpasswordrc,ryanconsolacion@gmail.com,Ad Issues,When I try to add a new entry it doesn't seem to save or show up in the system. This is making it hard for me to keep track of my data and complete my tasks.,6,Open
-Jazreil Sabog,4,strongpasswordjs,jazreilsabog@gmail.com,

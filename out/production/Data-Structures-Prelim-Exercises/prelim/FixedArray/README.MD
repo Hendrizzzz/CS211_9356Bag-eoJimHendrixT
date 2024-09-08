@@ -1,112 +1,85 @@
-# MVPLadderGenerator Program Algorithm
+# MVP Ladder Generator
 
 ## Overview
 
-The `MVPLadderGenerator` class generates an MVP ladder for basketball players based on their performance in a single game. The program allows users to input player data, sort players by their MVP score, and save the data.
+This program is designed to calculate and generate a Most Valuable Player (MVP) ladder based on player performance stats from a single game. It ranks players based on their performance metrics, allowing for a clear view of the top performers in the game.
 
-## Run Method
+## Classes
 
-- **Display Introduction**: Show introductory messages about the program and its context.
+- **MVPLadderGenerator** - Manages the program loop, user input, and MVP ladder generation.
+- **Player** - Represents a player with attributes like name, ID, and performance statistics.
+- **PlayerStats** - Represents the performance metrics of a player, such as points scored, assists, and rebounds.
+- **MVP** - Represents the MVP ranking, with attributes like player, rank, and score.
 
+## Files
 
-## 1. Initialization
+- **PLAYER_LIST_FILE** - Stores player data.
+- **PLAYER_STATS_FILE** - Stores performance statistics for each player.
+- **MVP_LADDER_FILE** - Stores the generated MVP ladder.
 
-- **Setup Constants**: Define ANSI escape codes and initialize a fixed-size array list for players.
-- **Variables**: Set up a `BufferedReader` for user input.
+## Program Flow
 
-## 2. Main Method
+### User Input:
 
-- **Create Instance**: Instantiate `MVPLadderGenerator`.
-- **Start Thread**: Run the `MVPLadderGenerator` in a separate thread.
-- **Join Thread**: Wait for the thread to complete.
-- **Start Program**: Call the `start` method to begin the program.
+- Users provide performance stats for each player.
+- The system calculates the MVP rankings based on these stats.
 
-## 3. Start Method
+### MVP Ladder Generation:
 
-- **Press Enter**: Prompt user to press Enter to continue.
-- **Read Players**: Load player data from file.
-- **Display Header**: Show the program title and instructions.
+- Calculate scores for each player based on their performance metrics.
+- Rank players from highest to lowest score to generate the MVP ladder.
 
-- **Main Menu Loop**:
-    - Continuously prompt the user to choose from the following options:
-        - **Fill Players**: Complete entry for 5 players.
-        - **Add 1 Player**: Add a single player to the list.
-        - **Remove 1 Player**: Remove a player from the list.
-        - **Check a Player**: Display details of a player.
-        - **Clear All Players**: Clear the list of all players.
-        - **Show MVP Ladder**: Display the MVP ladder.
-        - **Save and Exit**: Save player data and exit.
-        - **Don't Save and Quit**: Exit without saving.
+### Display Rankings:
 
-## 4. Read Players
+- Display the MVP ladder showing the top performers and their scores.
 
-- **Load Data**: Read player data from `Players.txt` and populate the player list.
-- **Handle Exceptions**: Manage file read errors and list overflow exceptions.
+## Pseudocode
 
-## 5. Read Choice
+### 1. Main Class Structure
+MVPLadderGenerator
+- **Variables:**
+    - `playerList`: List/array to store player details.
+    - `playerStatsList`: List/array to store player performance stats.
+    - `mvpLadder`: List/array to store the generated MVP rankings.
 
-- **Display Menu**: Show the available options to the user.
-- **Validate Input**: Ensure user input is a valid choice (1-8).
+### 2. Menu Display Functionality
+`displayMenu()`
+- Display options for the user to input player stats or view the MVP ladder.
+- Options:
+    - Input Player Stats
+    - View MVP Ladder
+    - Exit
 
-## 6. Show Menu
+### 3. User Input Functions
+`readString(prompt, reader)`
+- Read a string input from the user.
+- Return the valid input string.
 
-- **Menu Options**: Display options for user actions.
+`readDouble(prompt, reader)`
+- Read a double input from the user for performance metrics.
+- Handle invalid inputs and prompt for retry.
+- Return the valid double input.
 
-## 7. Press Enter
+### 4. MVP Ladder Generation Functions
+`generateMVP()`
+- Calculate scores for each player based on performance metrics.
+- Rank players and generate the MVP ladder.
 
-- **Prompt User**: Ask the user to press Enter to proceed.
+`displayMVPLadder()`
+- Display the MVP ladder showing the rankings and scores of the top players.
 
-## 8. Read Player
+### 5. Helper Functions
+`findPlayerByID(playerID)`
+- Search for a player by their ID.
+- Return the Player object if found, or null if not found.
 
-- **Input Player Details**: Prompt user to enter details for a player and return a `Player` object.
+`calculatePlayerScore(playerStats)`
+- Calculate the total score for a player based on their performance metrics.
+- Return the calculated score.
 
-## 9. Read Position
+## Notes
 
-- **Validate Position**: Ensure the player’s position is within the valid range (1-5).
-
-## 10. Read String
-
-- **Input Validation**: Ensure the user’s input is a non-empty string.
-
-## 11. Read Byte
-
-- **Input Validation**: Read and validate a byte value, ensuring it meets required conditions.
-
-## 12. Fill Players
-
-- **Add 5 Players**: Prompt user to enter details for 5 players.
-
-## 13. Add 1 Player
-
-- **Add Player**: Add a single player to the list.
-
-## 14. Remove 1 Player
-
-- **Remove Player**: Prompt user for player details and remove the player if found.
-
-## 15. Form Player
-
-- **Create Player Object**: Collect details to create a `Player` object for search or removal.
-
-## 16. Check a Player
-
-- **Search Player**: Find and display details of a player based on user input.
-
-## 17. Clear All Players
-
-- **Reset List**: Clear all players from the list.
-
-## 18. Show MVP Ladder
-
-- **Sort Players**: Sort players by MVP score in descending order.
-- **Display Ladder**: Show the top 5 players in the MVP ladder.
-
-## 19. Sort Players
-
-- **Selection Sort**: Implement selection sort algorithm to sort players based on MVP scores.
-
-## 20. Save
-
-- **Save Data**: Write player data to `Players.txt` and exit the program.
-
-
+- The program ensures that inputs are validated and error handling is implemented.
+- The performance metrics are used to calculate scores and rank players.
+- The MVP ladder is generated and displayed based on the calculated scores.
+- Ensure that player data and performance stats are correctly formatted and accurate for proper ladder generation.

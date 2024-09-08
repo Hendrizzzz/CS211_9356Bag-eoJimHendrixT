@@ -83,4 +83,15 @@ public class Customer {
     public void setIssue(SupportTicket issue) {
         this.issue = issue;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", issue=" + issue +
+                '}';
+    }
 }
