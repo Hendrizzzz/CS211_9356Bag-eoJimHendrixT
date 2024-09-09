@@ -27,7 +27,7 @@ public class Tester {
 
 
     private static void addInteger() {
-        System.out.println("How many integers to add: ");
+        System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
         int i = 0;
         while (i < size) {

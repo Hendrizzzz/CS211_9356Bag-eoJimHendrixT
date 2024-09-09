@@ -14,7 +14,7 @@ public class Tester {
 
         while (true) {
             showOptions();
-            int choice = readInt(1,9);
+            int choice = readInt(1,12);
             switch (choice) {
                 case 1-> addInteger();
                 case 2 -> deleteInteger();
@@ -24,7 +24,10 @@ public class Tester {
                 case 6 -> traverse(30);
                 case 7 -> searchIndexElement();
                 case 8 -> getElementAtIndex();
-                case 9 -> System.exit(0);
+                case 9 -> System.out.println("\nHead : " + integers.getHead());
+                case 10 -> System.out.println("\nTail : " + integers.getTail());
+                case 11 -> System.out.println("\nSize: " + integers.getSize());
+                case 12 -> System.exit(0);
             }
             System.out.println();
         }
@@ -32,7 +35,7 @@ public class Tester {
 
 
     private static void addInteger() {
-        System.out.println("How many integers to add: ");
+        System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
         int i = 0;
         while (i < size) {
@@ -52,6 +55,7 @@ public class Tester {
             System.out.println(integer + " is not in the list. ");
     }
 
+    // Exceptions are not applied here
     private static void traverseList() {
         System.out.println("\nTraversing from head to tail: ");
         System.out.print("t <- Head -> ");
@@ -68,22 +72,24 @@ public class Tester {
         System.out.print(" <- Tail -> h");
     }
 
+    // Catching null pointer exceptions are not applied here
     private static void traverseInReverse() {
         System.out.println("\nTraversing from tail to head: ");
         System.out.print("h <- Tail -> ");
         DoublyLinkedNode<CustomInteger> currentNode = integers.getTail();
         System.out.print(currentNode.getData() + "  <-->  ");
         currentNode = currentNode.getPrevious();
-        while (!currentNode.equals(integers.getHead())) {
+        while (!currentNode.equals(integers.getTail())) {
             System.out.print(currentNode.getData());
 
-            if (! currentNode.getPrevious().equals(integers.getHead()))
+            if (! currentNode.getPrevious().equals(integers.getTail()))
                 System.out.print("  <-->  ");
             currentNode = currentNode.getPrevious();
         }
-        System.out.print(" <- Tail -> h");
+        System.out.print(" <- Head -> t");
     }
 
+    // Catching null pointer exceptions are not applied here
     private static void traverseListTwice(){
         System.out.println("\nTraversing the List Twice: ");
         DoublyLinkedNode<CustomInteger> currentNode = integers.getHead();
@@ -146,7 +152,10 @@ public class Tester {
                 6. Visit nodes x times
                 7. Search for element's position
                 8. Get element at index
-                9. Quit
+                9. View Head
+                10. View Tail
+                11. Get Size
+                12. Quit
                 """);
     }
 

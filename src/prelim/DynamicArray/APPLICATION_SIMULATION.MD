@@ -6,71 +6,71 @@ This document provides a simulation of a test run for the **Account Warden** app
 
 ### Initial Start
 
-**Program Output:**
+Program Output:
 
-![img.png](img.png)
+![img.png](../DocumentationScreenshots/img.png)
 
 ### Adding an Account
 
-1. **User Input:**
+1. User Input:
 
     ```plaintext
     1
     ```
 
 
-2. **Complete All What's Asked:**
+2. Complete All What's Asked:
 
     ```plaintext
     Email : lebronjames@gmail.com
    Username (if applicable) : lbj
    Password : lebronjamesGOAT
     ```
-![img_2.png](img_2.png)
+![img_2.png](../DocumentationScreenshots/img_2.png)
 ### Viewing Accounts Without Passwords
 
-1. **User Input:**
+1. User Input:
 
     ```plaintext
     3
     ```
 
-2. **Program Output:**
+2. Program Output:
 
-![img_3.png](img_3.png)
+![img_3.png](../DocumentationScreenshots/img_3.png)
 
 ### Viewing Accounts With Passwords
 
-1. **User Input:**
+1. User Input:
 
     ```plaintext
     4
     ```
 
-2. **Program Output:**
+2. Program Output:
 
-![img_4.png](img_4.png)
+![img_4.png](../DocumentationScreenshots/img_4.png)
 
 ### Removing an Account
 
-1. **User Input:**
+1. User Input:
 
     ```plaintext
     2
     ```
 
-2. **Program Output:**
+2. Program Output:
 
-   ![img_5.png](img_5.png)
+   ![img_5.png](../DocumentationScreenshots/img_5.png)
 
 ### Viewing Accounts After Removal
 
-1. **User Input:**
+1. User Input:
 
     ```plaintext
     3
     ```
 
-2. **Program Output:**
+2. Program Output:
 
-![img_6.png](img_6.png)
+![img_6.png](../DocumentationScreenshots/img_6.png)

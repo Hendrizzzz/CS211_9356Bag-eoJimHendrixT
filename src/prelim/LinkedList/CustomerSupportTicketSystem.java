@@ -334,6 +334,7 @@ public class CustomerSupportTicketSystem {
 
         // Generate a unique ID for the user
         String id = generateUserId(isSupportEngineer);
+        System.out.println("Your ID will be: " + id + ". Please remember it. ");
 
         // Get user details
         String name = readString("Name: ", reader);

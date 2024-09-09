@@ -30,7 +30,8 @@ public class Tester {
 
 
     private static void addInteger() {
-        System.out.println("How many integers to add: ");
+        System.out.println("\nOption 1: (Add Integer)");
+        System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
         int i = 0;
         while (i < size) {
@@ -42,6 +43,7 @@ public class Tester {
     }
 
     private static void deleteInteger() {
+        System.out.println("\nOption 2: (Delete Integer)");
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         if (integers.delete(new CustomInteger(integer)))
@@ -51,43 +53,46 @@ public class Tester {
     }
 
     private static void traverseList() {
-        System.out.println("\nTraversing from head to tail: ");
-        System.out.print("t <- Head -> ");
+        System.out.println("\nOption 3 : (View List)");
+        System.out.println("Traversing from head to tail: ");
+        System.out.print("Head -> ");
 
         DoublyLinkedNode<CustomInteger> currentNode = integers.getHead();
         System.out.print(currentNode.getData() + "  <-->  ");
         currentNode = currentNode.getNext();
 
-        while (!currentNode.equals(integers.getHead())) {
+        while (currentNode != null) {
             System.out.print(currentNode.getData());
 
-            if (! currentNode.getNext().equals(integers.getHead()))
+            if (currentNode.getNext() != null)
                 System.out.print("  <-->  ");
             currentNode = currentNode.getNext();
         }
-        System.out.print(" <- Tail -> h");
+        System.out.print(" <- Tail");
     }
 
     private static void traverseInReverse() {
-        System.out.println("\nTraversing from tail to head: ");
-        System.out.print("h <- Tail -> ");
+        System.out.println("\nOption 4 : (View List in Reverse)");
+        System.out.println("Traversing from tail to head: ");
+        System.out.print("Tail -> ");
 
         DoublyLinkedNode<CustomInteger> currentNode = integers.getTail();
         System.out.print(currentNode.getData() + "  <-->  ");
         currentNode = currentNode.getPrevious();
 
-        while (!currentNode.equals(integers.getHead())) {
+        while (currentNode != null) {
             System.out.print(currentNode.getData());
 
-            if (! currentNode.getPrevious().equals(integers.getHead()))
+            if (currentNode.getPrevious() != null)
                 System.out.print("  <-->  ");
             currentNode = currentNode.getPrevious();
         }
-        System.out.print(" <- Tail -> h");
+        System.out.print(" <- Head ");
     }
 
 
     private static void searchIndexElement() {
+        System.out.println("Option 5 : (View Index)");
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         int index = integers.search(new CustomInteger(integerToSearch));
@@ -99,6 +104,7 @@ public class Tester {
     }
 
     private static void getElementAtIndex() {
+        System.out.println("Option 6 : (Search Element)");
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         try {
@@ -132,10 +138,9 @@ public class Tester {
                 2. Delete integer
                 3. Show List
                 4. Traverse List Tail to Head
-                5. Traverse LinkedList twice
-                6. Search for element's position
-                7. Get element at index
-                8. Quit
+                5. Search for element's position
+                6. Get element at index
+                7. Quit
                 """);
     }
 

@@ -93,11 +93,15 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
         boolean isDeleted = true;
 
         // Add a shortcut if the data to be deleted is from one of the ends
-        if (this.head.getData().equals(data)) // If from the head
+        if (this.head.getData().equals(data)) {// If from the head
             this.head = head.getNext();
+            this.head.setPrevious(this.tail);
+            this.tail.setNext(this.head);
+        }
         else if (this.tail.getData().equals(data)) {  // If from the tail
             this.tail = tail.getPrevious();
             this.tail.setNext(this.head);
+            this.head.setPrevious(this.tail);
         }
         else
             isDeleted = deleteRecursion(data, this.head);

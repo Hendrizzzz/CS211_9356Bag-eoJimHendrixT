@@ -121,9 +121,13 @@ public class FileEditor {
         System.out.println(BOLD + "\nOpening a file.... " + RESET);
         displayTEXT_FILES();
         byte fileToOpenIndex = readByte("File to Open: ", reader, 1, TEXT_FILES.getSize());
+        TextFile textFile = TEXT_FILES.get(fileToOpenIndex - 1);
         while (true) {
-            TextFile textFile = TEXT_FILES.get(fileToOpenIndex - 1);
-            displayFile(fileToOpenIndex, textFile);
+            Boolean isReverted = false;
+            if (isReverted)
+                displayFile(textFile);
+            else
+                displayFile(textFile);
             System.out.print("""
                     1. Edit File
                     2. See past versions
@@ -141,7 +145,7 @@ public class FileEditor {
         }
     }
 
-    private void displayFile(byte fileToOpenIndex, TextFile textFile) {
+    private void displayFile(TextFile textFile) {
         System.out.println();
         if (textFile.getStringContents().isBlank()) {
             System.out.println("The text file has no contents yet....");
@@ -181,7 +185,7 @@ public class FileEditor {
         byte choice = readByte("Save Changes? Yes(1) or No(2):  ", reader, 1, 2);
         if (choice == 1) {
             textFile.setContents(newTitle, newContents);
-            System.out.println(BOLD + "");
+            System.out.println(BOLD + "The file has been saved!" + RESET);
         }
 
     }
@@ -206,7 +210,8 @@ public class FileEditor {
             textFile.setContents(textFile.getContents());
             TEXT_FILES.delete(textFile);
             TEXT_FILES.insert(textFile.getVersions().get(versionNumber - 1));
-            System.out.println(GREEN + "Restoration complete: The file has been reverted to the earlier version. " + RESET);
+            System.out.println(GREEN + "Restoration complete: The file has been reverted to the earlier version. " +
+                    "\nExit and Open this file again for the updates to take effect. " + RESET);
         }
     }
 

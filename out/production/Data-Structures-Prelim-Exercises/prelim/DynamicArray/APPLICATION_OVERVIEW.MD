@@ -49,13 +49,10 @@ It provides flexibility in managing accounts as the list grows or shrinks.
 
 ## Program Flow
 
-1. **Initialization:**
-    - The `main` method initializes the `AccountWarden` instance and calls the `run` method to start the program.
-
-2. **Data Reading:**
+1. **Data Reading:**
     - The `readData` method is called to read existing account data from `Accounts.txt` and populate the `accounts` list.
 
-3. **User Interaction:**
+2. **User Interaction:**
     - The `run` method enters a loop where it displays the menu and processes user choices:
         - **Add Account (1):** Prompts the user for account details and adds a new account to the list.
         - **Remove Account (2):** Prompts the user for account details and removes the account if it exists.
@@ -63,9 +60,6 @@ It provides flexibility in managing accounts as the list grows or shrinks.
         - **View Accounts with Passwords (4):** Displays all accounts with passwords.
         - **Save Changes (5):** Saves all current accounts to `Accounts.txt`.
         - **Exit (6):** Exits the application.
-
-4. **End of Program:**
-    - The program exits if the user selects the exit option. Changes to the account data are saved if the user chooses to save before exiting.
 
 ## Files
 

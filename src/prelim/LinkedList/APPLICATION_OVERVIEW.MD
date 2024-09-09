@@ -19,11 +19,6 @@
 
 This is the main class of the program, responsible for user interactions, file operations, and account management.
 
-- **Constants:**
-    - `BOLD`, `RESET`, `GREEN`, `RED`: Color codes for console text formatting.
-    - `FILE_PATH`: Path to the file where accounts are stored.
-    - `accounts`: An instance of `MyGrowingArrayList` that stores account objects.
-
 - **Methods:**
     - `main(String[] args)`: Entry point of the application. Initializes the `AccountWarden` instance and starts the program.
     - `run()`: Main loop that handles user input and executes actions.
@@ -47,28 +42,16 @@ The `Account` class represents a user account with the following attributes:
     - `username`: The username associated with the account (can be empty if not applicable).
     - `password`: The password associated with the account.
 
-- **Methods:**
-    - `Account(String emailAddress, String username, String password)`: Constructor to initialize an account with email, username, and password.
-    - `Account(String emailAddress, String username)`: Constructor to initialize an account with email and username (password is optional).
-    - `getEmailAddress()`: Returns the email address of the account.
-    - `getUsername()`: Returns the username of the account.
-    - `getPassword()`: Returns the password of the account.
-    - `toString()`: Returns a string representation of the account, including the password if specified.
-    - `toString(boolean withPassword)`: Returns a string representation of the account, optionally including the password.
-
 ### `MyGrowingArrayList` Class
 
 This custom class is a dynamic array list implementation used to store `Account` objects. It provides flexibility in managing accounts as the list grows or shrinks.
 
 ## Program Flow
 
-1. **Initialization:**
-    - The `main` method initializes the `AccountWarden` instance and calls the `run` method to start the program.
-
-2. **Data Reading:**
+1. **Data Reading:**
     - The `readData` method is called to read existing account data from `Accounts.txt` and populate the `accounts` list.
 
-3. **User Interaction:**
+2. **User Interaction:**
     - The `run` method enters a loop where it displays the menu and processes user choices:
         - **Add Account (1):** Prompts the user for account details and adds a new account to the list.
         - **Remove Account (2):** Prompts the user for account details and removes the account if it exists.
@@ -77,7 +60,7 @@ This custom class is a dynamic array list implementation used to store `Account`
         - **Save Changes (5):** Saves all current accounts to `Accounts.txt`.
         - **Exit (6):** Exits the application.
 
-4. **End of Program:**
+3. **End of Program:**
     - The program exits if the user selects the exit option. Changes to the account data are saved if the user chooses to save before exiting.
 
 ## Files

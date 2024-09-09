@@ -8,9 +8,9 @@ After inserting 10 integers into the list, we can view the list by selecting opt
 - Integers added: `5, 10, 15, 20, 25, 30, 35, 40, 45, 50`
 
 ### Insertion of 10 elements:
-![Insert 10 elements](ScreenshotsForMDFile/img.png))
+![Insert 10 elements](../DocumentationScreenshots/img_22.png))
 ### Viewing of the list
-![img_1.png](ScreenshotsForMDFile/img_1.png)
+![img_1.png](../DocumentationScreenshots/img_23.png)
 
 ### Description:
 The list displays the elements in the order they were inserted. The traversal shows that the list is correctly connected from head to tail.
@@ -24,7 +24,7 @@ After deleting an element from the list, we can view the list by selecting optio
 - Element to delete: `25`
 
 ### Deletion of element '25' and the List after the Deletion:
-![img_2.png](ScreenshotsForMDFile/img_2.png)
+![img_2.png](../DocumentationScreenshots/img_24.png)
 
 
 ### Description:
@@ -41,7 +41,7 @@ after that we view the updated list.
 - Integers added: `60, 65, 70, 75, 80`
 
 ### Screenshot:
-!![img_3.png](ScreenshotsForMDFile/img_3.png)[Insert more elements](path_to_screenshot/insert_more_elements.png)
+!![img_3.png](../DocumentationScreenshots/img_25.png)[Insert more elements](path_to_screenshot/insert_more_elements.png)
 
 ### Description:
 Additional integers `60, 65, 70, 75, 80` were added to the list. Notice that the head is now pointing to the former second element which is 10, and 5 is gone.
@@ -56,7 +56,7 @@ Next, we search for the position of an element within the list.
 - Element to search: `35`
 
 ### Screenshot:
-![img_4.png](ScreenshotsForMDFile/img_4.png)
+![img_4.png](../DocumentationScreenshots/img_26.png)
 
 ### Description:
 The search function successfully located the integer `35` in the list and returned its index which should be 4.
@@ -70,7 +70,7 @@ Finally, we retrieve the element located at a specific index in the list.
 - Index to retrieve: `9`
 
 ### Screenshot:
-![img_5.png](ScreenshotsForMDFile/img_5.png)
+![img_5.png](../DocumentationScreenshots/img_27.png)
 
 ### Description:
 The integer located at index `9` in the list is `65`, as shown in the screenshot.

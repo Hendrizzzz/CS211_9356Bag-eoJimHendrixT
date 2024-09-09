@@ -118,12 +118,15 @@ public class MusicPlayer {
 
     private void playAllSongs(BufferedReader reader) {
         DoublyLinkedNode<Song> song = songs.getHead();
+        int i = 0;
         do {
-            song.getData().playSong();
-            song = song.getNext();
-        } while (song != songs.getHead() ||
-                            readString("Do you want to continue? (Y/N)", reader).
-                            equalsIgnoreCase("Y"));
+            do {
+                song.getData().playSong();
+                song = song.getNext();
+            } while (song != songs.getHead());
+            i++;
+        } while (i%2 == 1|| readString("Do you want to continue? (Y/N)", reader).
+                equalsIgnoreCase("Y"));
     }
 
 

@@ -3,7 +3,7 @@ package prelim.DoublyLinkedList.PureTesterClasses;
 import prelim.DoublyLinkedList.MyDoublyLinkedList;
 import prelim.DoublyLinkedNode;
 
-public class DoublyLinkedListTester {
+public class Premade_Tester {
     public static void main(String[] args) {
         MyDoublyLinkedList<Integer> integers = new MyDoublyLinkedList<>();
         System.out.println("Initial Size: " + integers.getSize());
