@@ -1,20 +1,35 @@
 package prelim.DoublyLinkedList;
 
 import prelim.DoublyLinkedNode;
-import prelim.LinkedList.Node;
-import prelim.MyList;
+import prelim.MyLinkedList;
 
 import java.util.NoSuchElementException;
 
-public class MyDoublyLinkedList<T> implements MyList<T> {
-     DoublyLinkedNode<T> head;
-     DoublyLinkedNode<T> tail;
+
+/**
+ * A custom implementation of a doubly linked list.
+ *
+ * @param <T> the type of elements stored in the list
+ */
+public class MyDoublyLinkedList<T> implements MyLinkedList<T> {
+    private DoublyLinkedNode<T> head;
+    private DoublyLinkedNode<T> tail;
     private int size;
 
+
+    /**
+     * Constructs an empty doubly linked list.
+     */
     public MyDoublyLinkedList() {
         this.size = 0;
     }
 
+
+    /**
+     * Constructs a doubly linked list with an initial element.
+     *
+     * @param data the initial element to insert
+     */
     public MyDoublyLinkedList(T data) {
         this.head = new DoublyLinkedNode<>(data);
         this.head.setPrevious(null); // The first element in a doubly-LinkedList is none
@@ -22,21 +37,63 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
     }
 
 
-    public DoublyLinkedNode<T> getHead() {
+    /**
+     * Returns the data of the head node.
+     *
+     * @return the data of the head node, or null if the list is empty
+     */
+    @Override
+    public T getHead() {
+        return head == null ? null : head.getData();
+    }
+
+    /**
+     * Returns the data of the tail node.
+     *
+     * @return the data of the tail node, or null if the list is empty
+     */
+    @Override
+    public T getTail() {
+        return tail == null ? null : head.getData();
+    }
+
+    /**
+     * Returns the head node of the list (package-private).
+     * Hidden in the package so that only 2 class can access (tester classes)
+     * @return the head node
+     */
+    DoublyLinkedNode<T> getHeadNode() {
         return head;
     }
 
-    public DoublyLinkedNode<T> getTail() {
+
+    /**
+     * Returns the tail node of the list (package-private).
+     * Hidden in the package so that only 2 class can access (tester classes)
+     *
+     * @return the tail node
+     */
+    DoublyLinkedNode<T> getTailNode() {
         return tail;
     }
 
 
+    /**
+     * Returns the size of the list.
+     *
+     * @return the size of the list
+     */
     @Override
     public int getSize() {
         return this.size;
     }
 
 
+    /**
+     * Inserts a new element into the list.
+     *
+     * @param data the element to insert
+     */
     @Override
     public void insert(T data) {
         if (this.head == null) {
@@ -62,6 +119,13 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Retrieves an element by value.
+     *
+     * @param data the value to search for
+     * @return the element, or throws NoSuchElementException if not found
+     * @throws NoSuchElementException if the element is not found
+     */
     @Override
     public T getElement(T data) throws NoSuchElementException {
         if (this.head.getData().equals(data)) {
@@ -82,6 +146,12 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Deletes an element by value.
+     *
+     * @param data the value to delete
+     * @return true if the element was deleted, false otherwise
+     */
     @Override
     public boolean delete(T data) {
         if (this.head == null) // return immediately if the list has no elements
@@ -89,10 +159,16 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
 
         boolean isDeleted = true;
 
+        if (this.head == this.tail && this.head.getData().equals(data)){
+            this.head = null;
+            this.tail = null;
+        }
         // Add a shortcut if the data to be deleted is from one of the ends
-        if (this.head.getData().equals(data)) // If from the head
+        else if (this.head.getData().equals(data)) {// If from the head
             this.head = head.getNext();
-        else if (this.tail.getData().equals(data)) { // If from the tail
+            this.head.setPrevious(null);
+        }
+        else if (this.tail.getData().equals(data)) {  // If from the tail
             this.tail = tail.getPrevious();
             this.tail.setNext(null);
         }
@@ -121,6 +197,12 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Searches for an element by value and returns its index.
+     *
+     * @param data the value to search for
+     * @return the index of the element, or -1 if not found
+     */
     @Override
     public int search(T data) {
         int index = 0;
@@ -139,6 +221,14 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
             return searchRecursion(data, node.getNext(), ++index);
     }
 
+
+    /**
+     * Retrieves an element by index.
+     *
+     * @param index the index to retrieve
+     * @return the element at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     public T get(int index) {
         if (index < 0 || (index != 0 && index >= size))
             throw new IndexOutOfBoundsException();
@@ -165,4 +255,4 @@ public class MyDoublyLinkedList<T> implements MyList<T> {
     }
 
 
-}
+} // end of the class

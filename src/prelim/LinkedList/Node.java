@@ -100,8 +100,15 @@ public class Node<T> {
         return data != null ? data.hashCode() : 0;
     }
 
+
+    /**
+     * Returns the string representation of the {@code data} object.
+     *
+     * @return A string representation of the data.
+     */
     @Override
     public String toString() {
         return data.toString();
     }
+
 } // end of the class

@@ -1,32 +1,45 @@
 package prelim.LinkedList;
 
 import prelim.CustomInteger;
-import prelim.DoublyLinkedList.MyDoublyLinkedList;
-import prelim.DoublyLinkedNode;
 
 import java.util.Scanner;
 
-public class Tester {
-    private static final MyDoublyLinkedList<CustomInteger> integers = new MyDoublyLinkedList<>();
 
+/**
+ * A class for testing operations on MyFixedSizeArrayList.
+ * Provides options to add, delete, search, and retrieve integers from the list.
+ */
+public class Tester {
+    private static final MySinglyLinkedList<CustomInteger> integers = new MySinglyLinkedList<>();
+
+
+    /**
+     * Main method to run the tester.
+     */
     public static void main(String[] args) {
 
         while (true) {
             showOptions();
-            int choice = readInt(1,6);
+            int choice = readInt(1,9);
             switch (choice) {
                 case 1 -> addInteger();
                 case 2 -> deleteInteger();
                 case 3 -> traverseList();
                 case 4 -> searchIndexElement();
                 case 5 -> getElementAtIndex();
-                case 6 -> System.exit(0);
+                case 6 -> System.out.println("\nHead: " + integers.getHead());
+                case 7 -> System.out.println("\nTail: " + integers.getTail());
+                case 8 -> System.out.println("\nSize: " + integers.getSize());
+                case 9 -> System.exit(0);
             }
             System.out.println();
         }
     }
 
 
+    /**
+     * Adds an integer to the list.
+     */
     private static void addInteger() {
         System.out.println("How many integers to add: ");
         int size = readInt(1, 100);
@@ -39,6 +52,10 @@ public class Tester {
         }
     }
 
+
+    /**
+     * Adds an integer to the list.
+     */
     private static void deleteInteger() {
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -48,25 +65,35 @@ public class Tester {
             System.out.println(integer + " is not in the list. ");
     }
 
+
+    /**
+     * Displays all integers in the list.
+     */
     private static void traverseList() {
-        System.out.println("\nTraversing from head to tail: ");
+        System.out.println("\nTraversing from head to tail:");
+        Node<CustomInteger> currentNode = integers.getHeadNode();
+
+        if (currentNode == null) {
+            System.out.println("The list is empty.");
+            return;
+        }
+
         System.out.print("Head -> ");
-
-        DoublyLinkedNode<CustomInteger> currentNode = integers.getHead();
-        System.out.print(currentNode.getData() + "  -->  ");
-        currentNode = currentNode.getNext();
-
         while (currentNode != null) {
             System.out.print(currentNode.getData());
-
-            if (currentNode.getNext() != null)
-                System.out.print("  -->  ");
+            if (currentNode.getNext() != null) {
+                System.out.print(" --> ");
+            }
             currentNode = currentNode.getNext();
         }
-        System.out.print(" <- Tail");
+
+        System.out.println(" <- Tail");
     }
 
 
+    /**
+     * Searches for an integer in the list and displays its index.
+     */
     private static void searchIndexElement() {
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -78,6 +105,10 @@ public class Tester {
             System.out.println("The integer " + integerToSearch + " is found at index " + index);
     }
 
+
+    /**
+     * Retrieves and displays the integer at a specified index.
+     */
     private static void getElementAtIndex() {
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -90,6 +121,14 @@ public class Tester {
 
     }
 
+
+    /**
+     * Reads an integer input from the user within a specified range.
+     *
+     * @param min The minimum valid value.
+     * @param max The maximum valid value.
+     * @return The validated integer input.
+     */
     private static int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);
         while (true) {
@@ -113,7 +152,10 @@ public class Tester {
                 3. Show List
                 4. Search for element's position
                 5. Get element at index
-                6. Quit
+                6. Get head
+                7. Get tail
+                8. Get size
+                9. Quit
                 """);
     }
 

@@ -1,17 +1,22 @@
 package prelim.FixedArray;
 
 import prelim.CustomInteger;
-import prelim.DoublyLinkedList.MyDoublyLinkedList;
-import prelim.DoublyLinkedNode;
 import prelim.ListOverflowException;
 
 import java.util.Scanner;
 
+
+/**
+ * A class for testing operations on MyFixedSizeArrayList.
+ * Provides options to add, delete, search, and retrieve integers from the list.
+ */
 public class Tester {
     private static final MyFixedSizeArrayList<CustomInteger> integers = new MyFixedSizeArrayList<>();
 
+    /**
+     * Main method to run the tester.
+     */
     public static void main(String[] args) {
-
 
         while (true) {
             showOptions();
@@ -29,6 +34,9 @@ public class Tester {
     }
 
 
+    /**
+     * Adds an integer to the list.
+     */
     private static void addInteger() {
         System.out.print("Integer to Add : ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -41,6 +49,10 @@ public class Tester {
 
     }
 
+
+    /**
+     * Deletes an integer from the list.
+     */
     private static void deleteInteger() {
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -50,6 +62,10 @@ public class Tester {
             System.out.println(integer + " is not in the list. ");
     }
 
+
+    /**
+     * Displays all integers in the list.
+     */
     private static void showList() {
         System.out.println("The list: ");
         for (int i = 0; i < integers.getSize(); i++) {
@@ -58,6 +74,10 @@ public class Tester {
         System.out.println();
     }
 
+
+    /**
+     * Searches for an integer in the list and displays its index.
+     */
     private static void searchIndexElement() {
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -69,6 +89,10 @@ public class Tester {
             System.out.println("The integer " + integerToSearch + " is found at index " + index);
     }
 
+
+    /**
+     * Retrieves and displays the integer at a specified index.
+     */
     private static void getElementAtIndex() {
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -81,6 +105,14 @@ public class Tester {
 
     }
 
+
+    /**
+     * Reads an integer input from the user within a specified range.
+     *
+     * @param min The minimum valid value.
+     * @param max The maximum valid value.
+     * @return The validated integer input.
+     */
     private static int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);
         while (true) {

@@ -2,6 +2,7 @@ package prelim.DynamicArray;
 
 import prelim.MyArrayList;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
@@ -32,6 +33,18 @@ public class MyGrowingArrayList<T> implements MyArrayList<T> {
     public MyGrowingArrayList(int size) {
         this.size = size;
         array = (T[]) new Object[size];
+    }
+
+
+    /**
+     * Constructs a MyGrowingArrayList with the specified array and size.
+     *
+     * @param array The array to initialize the list with.
+     * @param size  The size of the list.
+     */
+    public MyGrowingArrayList(T[] array, int size){
+        this.array = array;
+        this.size = size;
     }
 
     /**
@@ -154,4 +167,17 @@ public class MyGrowingArrayList<T> implements MyArrayList<T> {
         array[index] = object;
     }
 
+
+    /**
+     * Returns a string representation of the MyGrowingArrayList object.
+     *
+     * @return A string showing the contents of the array and the size.
+     */
+    @Override
+    public String toString() {
+        return "MyGrowingArrayList{" +
+                "array=" + Arrays.toString(array) +
+                ", size=" + size +
+                '}';
+    }
 } // end of the class

@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 
+
+/**
+ * Manages file operations including creation, opening, editing, and deletion.
+ */
 public class FileEditor {
 
     // ANSI escape codes for formatting console output
@@ -14,6 +18,9 @@ public class FileEditor {
 
     private static final MyDoublyLinkedList<TextFile> TEXT_FILES = new MyDoublyLinkedList<>();
 
+    /**
+     * Main entry point for the application.
+     */
     public static void main(String[] args) {
         FileEditor myProgram;
 
@@ -25,6 +32,10 @@ public class FileEditor {
         }
     }
 
+
+    /**
+     * Starts the file editor and handles user input.
+     */
     private void run() {
         readData();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -43,12 +54,20 @@ public class FileEditor {
         }
     }
 
-
+    /**
+     * Reads data at startup (not yet implemented).
+     */
     private void readData() {
 
     }
 
 
+    /**
+     * Reads the user's menu choice.
+     *
+     * @param reader the BufferedReader to read user input
+     * @return the user's choice
+     */
     private byte readChoice(BufferedReader reader) {
         displayMenu();
 
@@ -62,6 +81,10 @@ public class FileEditor {
         }
     }
 
+
+    /**
+     * Displays the file reader menu.
+     */
     private void displayMenu() {
         System.out.println("""
                 FILE READER MENU:
@@ -72,6 +95,16 @@ public class FileEditor {
                 """);
     }
 
+
+    /**
+     * Reads a byte value within a specified range.
+     *
+     * @param prompt the prompt to display
+     * @param reader the BufferedReader to read user input
+     * @param lowerLimit the minimum acceptable value
+     * @param upperLimit the maximum acceptable value
+     * @return the read byte value
+     */
     private byte readByte(String prompt, BufferedReader reader, int lowerLimit, int upperLimit) {
         System.out.print(prompt);
         while (true) {
@@ -91,6 +124,14 @@ public class FileEditor {
         }
     }
 
+
+    /**
+     * Reads a string input from the user.
+     *
+     * @param prompt the prompt to display
+     * @param reader the BufferedReader to read user input
+     * @return the read string
+     */
     private String stringReader(String prompt, BufferedReader reader) {
         System.out.print(prompt);
         try {
@@ -102,6 +143,11 @@ public class FileEditor {
 
 
 
+    /**
+     * Creates a new text file.
+     *
+     * @param reader the BufferedReader to read user input
+     */
     private void createNewFile(BufferedReader reader) {
         System.out.println(BOLD + "\nCreating a text file.... " + RESET);
 
@@ -112,6 +158,12 @@ public class FileEditor {
         System.out.println(GREEN + "The file has been successfully created. \n" + RESET);
     }
 
+
+    /**
+     * Opens a file for viewing and editing.
+     *
+     * @param reader the BufferedReader to read user input
+     */
     private void openFile(BufferedReader reader) {
         if (TEXT_FILES.getSize() == 0) {
             System.out.println(BOLD + "There are no files yet created. \n" + RESET);
@@ -145,6 +197,11 @@ public class FileEditor {
         }
     }
 
+    /**
+     * Displays the content of a file.
+     *
+     * @param textFile the file to display
+     */
     private void displayFile(TextFile textFile) {
         System.out.println();
         if (textFile.getStringContents().isBlank()) {
@@ -153,6 +210,10 @@ public class FileEditor {
         System.out.println(textFile.toString() + "\n");
     }
 
+
+    /**
+     * Displays a list of all text files.
+     */
     private void displayTEXT_FILES() {
         System.out.printf("%-9s%-20s%-30s%n", "File No.", "Title", "Last Modified");
         for (int i = 0; i < TEXT_FILES.getSize(); i++){
@@ -162,6 +223,13 @@ public class FileEditor {
         System.out.println();
     }
 
+
+    /**
+     * Edits an existing text file.
+     *
+     * @param reader the BufferedReader to read user input
+     * @param textFile the file to edit
+     */
     private void editFile(BufferedReader reader, TextFile textFile) {
         System.out.println(BOLD + "\nEditing file... " + RESET);
         String newTitle = stringReader("New title (leave blank if keep the old title): ", reader);
@@ -190,6 +258,12 @@ public class FileEditor {
 
     }
 
+    /**
+     * Shows past versions of a file.
+     *
+     * @param textFile the file to view versions of
+     * @param reader the BufferedReader to read user input
+     */
     private void seePastVersions(TextFile textFile, BufferedReader reader) {
         if (textFile.getVersions().getSize() == 0) {
             System.out.println(BOLD + "File " + textFile.getTitle() + " has currently no past versions. \n" + RESET);
@@ -215,6 +289,11 @@ public class FileEditor {
         }
     }
 
+    /**
+     * Deletes a specified text file.
+     *
+     * @param reader the BufferedReader to read user input
+     */
     private void deleteFile(BufferedReader reader) {
         System.out.println(BOLD + "\nDeleting a file.... " + RESET);
         String title = stringReader("Title: ", reader);
@@ -227,6 +306,9 @@ public class FileEditor {
             System.out.println("FILE DELETION FAILED: file not found. ");
     }
 
+    /**
+     * Saves data (not implemented...).
+     */
     private void saveData() {
 
     }

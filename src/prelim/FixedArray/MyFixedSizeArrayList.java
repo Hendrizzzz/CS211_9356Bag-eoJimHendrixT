@@ -2,8 +2,8 @@ package prelim.FixedArray;
 
 import prelim.ListOverflowException;
 import prelim.MyArrayList;
-import prelim.MyList;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
  */
 public class MyFixedSizeArrayList<T> implements MyArrayList<T> {
 
+    private static final int FINAL_SIZE = 5;
     private final T[] array;
     private int size;
 
@@ -24,9 +25,10 @@ public class MyFixedSizeArrayList<T> implements MyArrayList<T> {
      */
     @SuppressWarnings("unchecked")
     public MyFixedSizeArrayList() {
-        array = (T[]) new Object[5];
+        array = (T[]) new Object[FINAL_SIZE];
         size = 0;
     }
+
 
 
     /**
@@ -151,6 +153,20 @@ public class MyFixedSizeArrayList<T> implements MyArrayList<T> {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
         array[index] = object;
+    }
+
+
+    /**
+     * Returns a string representation of the MyFixedSizeArrayList.
+     *
+     * @return A string showing the array and size of the list.
+     */
+    @Override
+    public String toString() {
+        return "MyFixedSizeArrayList{" +
+                "array=" + Arrays.toString(array) +
+                ", size=" + size +
+                '}';
     }
 
 } // end of the class

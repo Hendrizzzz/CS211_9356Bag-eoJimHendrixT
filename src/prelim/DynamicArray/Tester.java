@@ -4,6 +4,10 @@ import prelim.CustomInteger;
 
 import java.util.Scanner;
 
+
+/**
+ * Tests operations on a growing array list of CustomInteger.
+ */
 public class Tester {
     private static final MyGrowingArrayList<CustomInteger> integers = new MyGrowingArrayList<>();
 
@@ -26,6 +30,9 @@ public class Tester {
     }
 
 
+    /**
+     * Adds integers to the list.
+     */
     private static void addInteger() {
         System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
@@ -38,6 +45,9 @@ public class Tester {
         }
     }
 
+    /**
+     * Deletes an integer from the list.
+     */
     private static void deleteInteger() {
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -47,6 +57,10 @@ public class Tester {
             System.out.println(integer + " is not in the list. ");
     }
 
+
+    /**
+     * Displays all integers in the list.
+     */
     private static void showList() {
         System.out.println("The list: ");
         for (int i = 0; i < integers.getSize(); i++) {
@@ -55,6 +69,10 @@ public class Tester {
         System.out.println();
     }
 
+
+    /**
+     * Searches for an integer and returns its index.
+     */
     private static void searchIndexElement() {
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -66,6 +84,9 @@ public class Tester {
             System.out.println("The integer " + integerToSearch + " is found at index " + index);
     }
 
+    /**
+     * Retrieves the integer at a specific index.
+     */
     private static void getElementAtIndex() {
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -77,6 +98,7 @@ public class Tester {
         }
 
     }
+
 
     private static int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);

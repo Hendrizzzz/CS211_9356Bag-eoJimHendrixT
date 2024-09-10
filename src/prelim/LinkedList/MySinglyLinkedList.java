@@ -1,6 +1,6 @@
 package prelim.LinkedList;
 
-import prelim.MyList;
+import prelim.MyLinkedList;
 
 import java.util.NoSuchElementException;
 
@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  *
  * @param <T> the type of elements held in this list
  */
-public class MySinglyLinkedList<T> implements MyList<T> {
+public class MySinglyLinkedList<T> implements MyLinkedList<T> {
 
     private Node<T> head;
     private Node<T> tail;
@@ -38,13 +38,15 @@ public class MySinglyLinkedList<T> implements MyList<T> {
     }
 
 
+
     /**
      * Returns the head node.
      *
      * @return the head node
      */
-    public Node<T> getHead() {
-        return head;
+    @Override
+    public T getHead() {
+        return head == null ? null : this.head.getData();
     }
 
     /**
@@ -52,7 +54,29 @@ public class MySinglyLinkedList<T> implements MyList<T> {
      *
      * @return the tail node
      */
-    public Node<T> getTail() {
+    @Override
+    public T getTail() {
+        return tail == null ? null : this.tail.getData();
+    }
+
+
+    /**
+     * Returns the head node of the list.
+     * Package modifier to hide access to the other classes
+     *
+     * @return The head node.
+     */
+    Node<T> getHeadNode() {
+        return head;
+    }
+
+    /**
+     * Returns the tail node of the list.
+     * Package modfier to hide access to the other classes
+     *
+     * @return The tail node.
+     */
+    Node<T> getTailNode() {
         return tail;
     }
 
@@ -74,9 +98,10 @@ public class MySinglyLinkedList<T> implements MyList<T> {
      */
     @Override
     public void insert(T data) {
-        if (this.head == null)
+        if (this.head == null) {
             this.head = new Node<>(data, null);
-
+            this.tail = new Node<>(data, null);
+        }
         else
             insertRecursion(data, head);
 
@@ -137,21 +162,26 @@ public class MySinglyLinkedList<T> implements MyList<T> {
         }
 
         else
-            return deleteRecursion(data, this.head);
+            return deleteRecursion(data, this.head, 1);
     }
 
-    private boolean deleteRecursion(T data, Node<T> node) {
-        if (node.getNext() == null)
+    private boolean deleteRecursion(T data, Node<T> current, int index) {
+        if (current.getNext() == null)
             return false;
 
-        else if (node.getNext().getData().equals(data)){
-            node.setNext(node.getNext().getNext()); // skip the data to delete in the list
+        else if (current.getNext().getData().equals(data)){
+            current.setNext(current.getNext().getNext()); // skip the data to delete in the list
+
+            if (index == this.size - 1){
+                this.tail = current;
+                this.tail.setNext(null);
+            }
             --this.size;
             return true;
         }
 
         else
-            return deleteRecursion(data, node.getNext());
+            return deleteRecursion(data, current.getNext(), ++index);
     }
 
 
@@ -185,6 +215,7 @@ public class MySinglyLinkedList<T> implements MyList<T> {
      * @return the element at the specified index
      * @throws IndexOutOfBoundsException if the index is out of range
      */
+    @Override
     public T get(int index) {
         if (index < 0 || (index != 0 && index >= size))
             throw new IndexOutOfBoundsException();

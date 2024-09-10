@@ -1,9 +1,5 @@
 package prelim.LinkedList;
 
-import prelim.LinkedList.Objects.Customer;
-import prelim.LinkedList.Objects.SupportEngineer;
-import prelim.LinkedList.Objects.SupportTicket;
-
 import java.io.*;
 import java.util.NoSuchElementException;
 
@@ -30,7 +26,6 @@ public class CustomerSupportTicketSystem {
     // Custom implementation of a Singly-LinkedList to manage customers, engineers, and tickets
     private static final MySinglyLinkedList<Customer> customerList = new MySinglyLinkedList<>();
     private static final MySinglyLinkedList<SupportEngineer> supportEngineerList = new MySinglyLinkedList<>();
-
     private static final MySinglyLinkedList<SupportTicket> supportTickets = new MySinglyLinkedList<>();
 
     // Current logged-in users

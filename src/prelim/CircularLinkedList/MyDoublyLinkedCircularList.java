@@ -1,21 +1,35 @@
 package prelim.CircularLinkedList;
 
 import prelim.DoublyLinkedNode;
-import prelim.MyList;
+import prelim.MyLinkedList;
 
 import java.util.NoSuchElementException;
 
-public class MyDoublyLinkedCircularList<T> implements MyList<T> {
+/**
+ * A circular doubly linked list implementation.
+ *
+ * @param <T> the type of elements in this list
+ */
+public class MyDoublyLinkedCircularList<T> implements MyLinkedList<T> {
     private DoublyLinkedNode<T> head;
     private DoublyLinkedNode<T> tail;
     private int size;
 
 
+    /**
+     * Constructs an empty circular doubly linked list.
+     */
     public MyDoublyLinkedCircularList() {
         this.head = null;
         this.size = 0;
     }
 
+
+    /**
+     * Constructs a circular doubly linked list with an initial element.
+     *
+     * @param data the initial element
+     */
     public MyDoublyLinkedCircularList(T data) {
         this.head = new DoublyLinkedNode<>(data);
         this.head.setPrevious(null); // The first element in a doubly-LinkedList is none
@@ -23,21 +37,64 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
     }
 
 
-    public DoublyLinkedNode<T> getHead() {
+    /**
+     * Returns the data stored in the head node.
+     *
+     * @return the data at the head, or null if the list is empty
+     */
+    @Override
+    public T getHead() {
+        return head == null ? null : head.getData();
+    }
+
+    /**
+     * Returns the data stored in the tail node.
+     *
+     * @return the data at the tail, or null if the list is empty
+     */
+    @Override
+    public T getTail() {
+        return tail == null ? null : tail.getData();
+    }
+
+    /**
+     * Returns the head node.
+     * Hidden in the package so that only two class can access (tester classes)
+     *
+     * @return the head node, or null if the list is empty
+     */
+    DoublyLinkedNode<T> getHeadNode() {
         return head;
     }
 
-    public DoublyLinkedNode<T> getTail() {
+    /**
+     * Returns the tail node.
+     * Hidden in the package so that only two class can access (tester classes)
+     *
+     * @return the tail node, or null if the list is empty
+     */
+    DoublyLinkedNode<T> getTailNode() {
         return tail;
     }
 
 
+    /**
+     * Returns the number of elements in the list.
+     *
+     * @return the size of the list
+     */
     @Override
     public int getSize() {
         return this.size;
     }
 
 
+
+    /**
+     * Inserts an element at the end of the list.
+     *
+     * @param data the element to insert
+     */
     @Override
     public void insert(T data) {
         if (this.head == null) {
@@ -65,6 +122,13 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Retrieves an element from the list.
+     *
+     * @param data the element to retrieve
+     * @return the element, or null if not found
+     * @throws NoSuchElementException if the element is not in the list
+     */
     @Override
     public T getElement(T data) throws NoSuchElementException {
         if (this.head.getData().equals(data)) {
@@ -85,6 +149,12 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Deletes an element from the list.
+     *
+     * @param data the element to delete
+     * @return true if the element was deleted, false if not found
+     */
     @Override
     public boolean delete(T data) {
         if (this.head == null) // return immediately if the list has no elements
@@ -92,8 +162,12 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
 
         boolean isDeleted = true;
 
+        if (this.head == this.tail && this.head.getData().equals(data)){ // if size == 1
+            this.head = null;
+            this.tail = null;
+        }
         // Add a shortcut if the data to be deleted is from one of the ends
-        if (this.head.getData().equals(data)) {// If from the head
+        else if (this.head.getData().equals(data)) {// If from the head
             this.head = head.getNext();
             this.head.setPrevious(this.tail);
             this.tail.setNext(this.head);
@@ -125,6 +199,12 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Searches for the index of an element in the list.
+     *
+     * @param data the element to search for
+     * @return the index of the element, or -1 if not found
+     */
     @Override
     public int search(T data) {
         if (this.head.getData().equals(data))
@@ -145,6 +225,13 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
     }
 
 
+    /**
+     * Retrieves an element by its index in the list.
+     *
+     * @param index the index of the element to retrieve
+     * @return the element at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     public T get(int index) {
         if (index < 0 || (index != 0 && index >= size))
             throw new IndexOutOfBoundsException();
@@ -155,7 +242,6 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
         else
             return getRecursionReversed(index, this.tail, this.size - 1);
     }
-
 
     private T getRecursion(int indexToReturn, DoublyLinkedNode<T> node, int currentIndex) {
         if (currentIndex == indexToReturn)
@@ -170,4 +256,5 @@ public class MyDoublyLinkedCircularList<T> implements MyList<T> {
 
         return getRecursionReversed(indexToReturn, node.getPrevious(), --currentIndex);
     }
-}
+
+} // end of the class
