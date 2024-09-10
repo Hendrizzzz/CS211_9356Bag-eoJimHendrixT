@@ -1,4 +1,4 @@
-package prelim.CircularLinkedList.PureTesterClasses;
+package prelim.CircularLinkedList;
 
 import prelim.CircularLinkedList.MyDoublyLinkedCircularList;
 import prelim.CustomInteger;

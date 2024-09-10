@@ -1,4 +1,4 @@
-package prelim.DoublyLinkedList.PureTesterClasses;
+package prelim.DoublyLinkedList;
 
 import prelim.CustomInteger;
 import prelim.DoublyLinkedList.MyDoublyLinkedList;

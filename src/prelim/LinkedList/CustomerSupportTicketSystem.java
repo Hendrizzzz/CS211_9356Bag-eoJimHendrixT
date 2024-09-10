@@ -1,9 +1,5 @@
 package prelim.LinkedList;
 
-import prelim.LinkedList.Objects.Customer;
-import prelim.LinkedList.Objects.SupportEngineer;
-import prelim.LinkedList.Objects.SupportTicket;
-
 import java.io.*;
 import java.util.NoSuchElementException;
 
