@@ -12,10 +12,9 @@ import java.util.Scanner;
 public class Tester {
     private static final MyDoublyLinkedList<CustomInteger> integers = new MyDoublyLinkedList<>();
 
-    public static void main(String[] args) {
-
-
-        while (true) {
+    public void run() {
+        boolean exploring = true;
+        while (exploring) {
             showOptions();
             int choice = readInt(1,10);
             switch (choice) {
@@ -28,7 +27,7 @@ public class Tester {
                 case 7 -> System.out.println("\nHead: " + integers.getHead());
                 case 8 -> System.out.println("\nTail: " + integers.getTail());
                 case 9 -> System.out.println("\nSize: " + integers.getSize());
-                case 10 -> System.exit(0);
+                case 10 -> exploring = false;
             }
             System.out.println();
         }
@@ -38,7 +37,7 @@ public class Tester {
     /**
      * Adds a specified number of integers to the list.
      */
-    private static void addInteger() {
+    private void addInteger() {
         System.out.println("\nOption 1: (Add Integer)");
         System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
@@ -54,7 +53,7 @@ public class Tester {
     /**
      * Deletes an integer from the list.
      */
-    private static void deleteInteger() {
+    private void deleteInteger() {
         System.out.println("\nOption 2: (Delete Integer)");
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -68,7 +67,7 @@ public class Tester {
     /**
      * Traverses and displays the list from head to tail.
      */
-    private static void traverseList() {
+    private void traverseList() {
         System.out.println("\nOption 3: View List");
         System.out.println("Traversing from head to tail:");
         DoublyLinkedNode<CustomInteger> currentNode = integers.getHeadNode();
@@ -94,7 +93,7 @@ public class Tester {
     /**
      * Traverses and displays the list from tail to head.
      */
-    private static void traverseInReverse() {
+    private void traverseInReverse() {
         System.out.println("\nOption 4: View List in Reverse");
         System.out.println("Traversing from tail to head:");
         DoublyLinkedNode<CustomInteger> currentNode = integers.getTailNode();
@@ -121,7 +120,7 @@ public class Tester {
     /**
      * Searches for an integer in the list and displays its index.
      */
-    private static void searchIndexElement() {
+    private void searchIndexElement() {
         System.out.println("Option 5 : (View Index)");
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -137,7 +136,7 @@ public class Tester {
     /**
      * Retrieves and displays the integer at a specified index.
      */
-    private static void getElementAtIndex() {
+    private void getElementAtIndex() {
         System.out.println("Option 6 : (Search Element)");
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -158,7 +157,7 @@ public class Tester {
      * @param max the maximum valid value
      * @return the user input as an integer
      */
-    private static int readInt(int min, int max) {
+    private int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);
         while (true) {
             try  {
@@ -174,7 +173,7 @@ public class Tester {
         }
     }
 
-    private static void showOptions() {
+    private void showOptions() {
         System.out.println("""
                 MY DOUBLY-LINKEDLIST
                 1. Add integer
@@ -190,4 +189,4 @@ public class Tester {
                 """);
     }
 
-}
+} // end of the class

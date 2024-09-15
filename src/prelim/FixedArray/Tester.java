@@ -13,12 +13,10 @@ import java.util.Scanner;
 public class Tester {
     private static final MyFixedSizeArrayList<CustomInteger> integers = new MyFixedSizeArrayList<>();
 
-    /**
-     * Main method to run the tester.
-     */
-    public static void main(String[] args) {
 
-        while (true) {
+    public void run() {
+        boolean exploring = true;
+        while (exploring) {
             showOptions();
             int choice = readInt(1,6);
             switch (choice) {
@@ -27,7 +25,7 @@ public class Tester {
                 case 3 -> showList();
                 case 4 -> searchIndexElement();
                 case 5 -> getElementAtIndex();
-                case 6 -> System.exit(0);
+                case 6 -> exploring = false;
             }
             System.out.println();
         }
@@ -37,7 +35,7 @@ public class Tester {
     /**
      * Adds an integer to the list.
      */
-    private static void addInteger() {
+    private void addInteger() {
         System.out.print("Integer to Add : ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         try {
@@ -53,7 +51,7 @@ public class Tester {
     /**
      * Deletes an integer from the list.
      */
-    private static void deleteInteger() {
+    private void deleteInteger() {
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         if (integers.delete(new CustomInteger(integer)))
@@ -66,7 +64,7 @@ public class Tester {
     /**
      * Displays all integers in the list.
      */
-    private static void showList() {
+    private void showList() {
         System.out.println("The list: ");
         for (int i = 0; i < integers.getSize(); i++) {
             System.out.print(integers.get(i) + "  ");
@@ -78,7 +76,7 @@ public class Tester {
     /**
      * Searches for an integer in the list and displays its index.
      */
-    private static void searchIndexElement() {
+    private void searchIndexElement() {
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         int index = integers.search(new CustomInteger(integerToSearch));
@@ -93,7 +91,7 @@ public class Tester {
     /**
      * Retrieves and displays the integer at a specified index.
      */
-    private static void getElementAtIndex() {
+    private void getElementAtIndex() {
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         try {
@@ -113,7 +111,7 @@ public class Tester {
      * @param max The maximum valid value.
      * @return The validated integer input.
      */
-    private static int readInt(int min, int max) {
+    private int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);
         while (true) {
             try  {
@@ -129,7 +127,7 @@ public class Tester {
         }
     }
 
-    private static void showOptions() {
+    private void showOptions() {
         System.out.println("""
                 MY FIXED ARRAY
                 1. Add integer
@@ -141,4 +139,4 @@ public class Tester {
                 """);
     }
 
-}
+} // end of the class

@@ -54,7 +54,7 @@ public class MyDoublyLinkedList<T> implements MyLinkedList<T> {
      */
     @Override
     public T getTail() {
-        return tail == null ? null : head.getData();
+        return tail == null ? null : tail.getData();
     }
 
     /**

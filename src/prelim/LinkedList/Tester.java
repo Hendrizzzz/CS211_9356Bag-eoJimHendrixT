@@ -13,12 +13,9 @@ public class Tester {
     private static final MySinglyLinkedList<CustomInteger> integers = new MySinglyLinkedList<>();
 
 
-    /**
-     * Main method to run the tester.
-     */
-    public static void main(String[] args) {
-
-        while (true) {
+    public void run() {
+        boolean exploring = true;
+        while (exploring) {
             showOptions();
             int choice = readInt(1,9);
             switch (choice) {
@@ -30,7 +27,7 @@ public class Tester {
                 case 6 -> System.out.println("\nHead: " + integers.getHead());
                 case 7 -> System.out.println("\nTail: " + integers.getTail());
                 case 8 -> System.out.println("\nSize: " + integers.getSize());
-                case 9 -> System.exit(0);
+                case 9 -> exploring = false;
             }
             System.out.println();
         }
@@ -40,7 +37,7 @@ public class Tester {
     /**
      * Adds an integer to the list.
      */
-    private static void addInteger() {
+    private void addInteger() {
         System.out.println("How many integers to add: ");
         int size = readInt(1, 100);
         int i = 0;
@@ -56,7 +53,7 @@ public class Tester {
     /**
      * Adds an integer to the list.
      */
-    private static void deleteInteger() {
+    private void deleteInteger() {
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         if (integers.delete(new CustomInteger(integer)))
@@ -69,7 +66,7 @@ public class Tester {
     /**
      * Displays all integers in the list.
      */
-    private static void traverseList() {
+    private void traverseList() {
         System.out.println("\nTraversing from head to tail:");
         Node<CustomInteger> currentNode = integers.getHeadNode();
 
@@ -94,7 +91,7 @@ public class Tester {
     /**
      * Searches for an integer in the list and displays its index.
      */
-    private static void searchIndexElement() {
+    private void searchIndexElement() {
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         int index = integers.search(new CustomInteger(integerToSearch));
@@ -109,7 +106,7 @@ public class Tester {
     /**
      * Retrieves and displays the integer at a specified index.
      */
-    private static void getElementAtIndex() {
+    private void getElementAtIndex() {
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         try {
@@ -129,7 +126,7 @@ public class Tester {
      * @param max The maximum valid value.
      * @return The validated integer input.
      */
-    private static int readInt(int min, int max) {
+    private int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);
         while (true) {
             try  {
@@ -145,7 +142,7 @@ public class Tester {
         }
     }
 
-    private static void showOptions() {
+    private void showOptions() {
         System.out.println("""
                 MY SINGLY-LINKEDLIST
                 1. Add integer

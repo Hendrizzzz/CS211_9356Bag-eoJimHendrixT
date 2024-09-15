@@ -76,15 +76,18 @@ public class PreMadeTester {
 
 
     private static void printHeadToTail(MyDoublyLinkedCircularList<CustomInteger> integers) {
-        Tester.traverseList(integers);
+        Tester tester = new Tester();
+        tester.traverseList(integers);
     }
 
     private static void printTailToHead(MyDoublyLinkedCircularList<CustomInteger> integers) {
-        Tester.traverseInReverse(integers);
+        Tester tester = new Tester();
+        tester.traverseInReverse(integers);
     }
 
     private static void traverseListTwice(MyDoublyLinkedCircularList<CustomInteger> integers){
-        Tester.traverseListTwice(integers);
+        Tester tester = new Tester();
+        tester.traverseListTwice(integers);
     }
 
 } // end of the class

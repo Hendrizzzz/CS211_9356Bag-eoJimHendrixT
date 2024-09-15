@@ -8,19 +8,25 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) {
-        String[] justAnArgumentToBePassed = new String[1];
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // Tester objects
+        Tester fixedArray = new Tester();
+        prelim.DynamicArray.Tester dynamicArray = new prelim.DynamicArray.Tester();
+        prelim.LinkedList.Tester linkedList = new prelim.LinkedList.Tester();
+        prelim.DoublyLinkedList.Tester doublyLinkedList = new prelim.DoublyLinkedList.Tester();
+        prelim.CircularLinkedList.Tester circularLinkedList = new prelim.CircularLinkedList.Tester();
 
         boolean exploring = true;
         while (exploring) {
             byte choice = readChoice(reader);
 
             switch (choice) {
-                case 1 -> Tester.main(justAnArgumentToBePassed);
-                case 2 -> prelim.DynamicArray.Tester.main(justAnArgumentToBePassed);
-                case 3 -> prelim.LinkedList.Tester.main(justAnArgumentToBePassed);
-                case 4 -> prelim.DoublyLinkedList.Tester.main(justAnArgumentToBePassed);
-                case 5 -> prelim.CircularLinkedList.Tester.main(justAnArgumentToBePassed);
+                case 1 -> fixedArray.run();
+                case 2 -> dynamicArray.run();
+                case 3 -> linkedList.run();
+                case 4 -> doublyLinkedList.run();
+                case 5 -> circularLinkedList.run();
             }
 
             if (userDoesNotWantAnymore(reader))

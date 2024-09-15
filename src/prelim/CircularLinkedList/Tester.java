@@ -18,8 +18,9 @@ public class Tester {
      *
      * @param args command-line arguments (not used)
      */
-    public static void main(String[] args) {
-        while (true) {
+    public void run() {
+        boolean exploring = true;
+        while (exploring) {
             showOptions();
             int choice = readInt(1, 11);
             switch (choice) {
@@ -33,13 +34,13 @@ public class Tester {
                 case 8 -> System.out.println("\nHead : " + integers.getHead());
                 case 9 -> System.out.println("\nTail : " + integers.getTail());
                 case 10 -> System.out.println("\nSize: " + integers.getSize());
-                case 11 -> System.exit(0);
+                case 11 -> exploring = false;
             }
             System.out.println();
         }
     }
 
-    private static void addInteger() {
+    private void addInteger() {
         System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
         int i = 0;
@@ -51,7 +52,7 @@ public class Tester {
         }
     }
 
-    private static void deleteInteger() {
+    private void deleteInteger() {
         System.out.print("Integer to Delete: ");
         int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         if (integers.delete(new CustomInteger(integer))) {
@@ -66,7 +67,7 @@ public class Tester {
      *
      * @param integers the circular doubly linked list to traverse
      */
-    static <T> void traverseList(MyDoublyLinkedCircularList<CustomInteger> integers) {
+    <T> void traverseList(MyDoublyLinkedCircularList<CustomInteger> integers) {
         if (integers.getHeadNode() == null) {
             System.out.println("The list is empty.");
             return;
@@ -97,7 +98,7 @@ public class Tester {
      *
      * @param integers the circular doubly linked list to traverse in reverse
      */
-    static <T> void traverseInReverse(MyDoublyLinkedCircularList<CustomInteger> integers) {
+    <T> void traverseInReverse(MyDoublyLinkedCircularList<CustomInteger> integers) {
         if (integers.getTailNode() == null) {
             System.out.println("The list is empty.");
             return;
@@ -128,7 +129,7 @@ public class Tester {
      *
      * @param integers the circular doubly linked list to traverse
      */
-    static <T> void traverseListTwice(MyDoublyLinkedCircularList<CustomInteger> integers) {
+    <T> void traverseListTwice(MyDoublyLinkedCircularList<CustomInteger> integers) {
         if (integers.getHeadNode() == null) {
             System.out.println("The list is empty.");
             return;
@@ -146,7 +147,7 @@ public class Tester {
         System.out.println("(End of traversal)");
     }
 
-    private static void searchIndexElement() {
+    private void searchIndexElement() {
         System.out.print("Enter the integer to search (returns the index): ");
         int integerToSearch = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         int index = integers.search(new CustomInteger(integerToSearch));
@@ -158,7 +159,7 @@ public class Tester {
         }
     }
 
-    private static void getElementAtIndex() {
+    private void getElementAtIndex() {
         System.out.print("Enter the index: ");
         int index = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         try {
@@ -169,7 +170,7 @@ public class Tester {
         }
     }
 
-    private static int readInt(int min, int max) {
+    private int readInt(int min, int max) {
         Scanner kInput = new Scanner(System.in);
         while (true) {
             try {
@@ -185,7 +186,7 @@ public class Tester {
         }
     }
 
-    private static void showOptions() {
+    private void showOptions() {
         System.out.println("""
                 MY CIRCULAR DOUBLY-LINKEDLIST
                 1. Add integer
@@ -201,4 +202,5 @@ public class Tester {
                 11. Quit
                 """);
     }
-}
+
+} // end of the class
