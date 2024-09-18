@@ -6,7 +6,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+
+/**
+ * This class serves as the main entry point for testing various data structure implementations.
+ */
+public class MainTester {
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
