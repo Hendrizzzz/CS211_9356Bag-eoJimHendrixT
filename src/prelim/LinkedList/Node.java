@@ -1,5 +1,6 @@
 package prelim.LinkedList;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
@@ -7,6 +8,7 @@ import java.util.Objects;
  * @param <T> Type of the data of the node
  */
 public class Node<T> {
+    private Node<T> prev;
     private T data;
     private Node<T> next;
 

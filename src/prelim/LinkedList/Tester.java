@@ -40,8 +40,9 @@ public class Tester {
     private void addInteger() {
         System.out.println("How many integers to add: ");
         int size = readInt(1, 100);
-        int i = 0;
-        while (i < size) {
+        int i = integers.getSize();
+        int max = size + integers.getSize();
+        while (i < max) {
             System.out.print("Integer to Add (index " + i + "): ");
             int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
             integers.insert(new CustomInteger(integer));

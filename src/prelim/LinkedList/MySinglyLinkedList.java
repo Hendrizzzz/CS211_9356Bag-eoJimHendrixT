@@ -151,18 +151,24 @@ public class MySinglyLinkedList<T> implements MyLinkedList<T> {
      */
     @Override
     public boolean delete(T data) {
-        if (this.head == null){
+        if (this.head == null)
             return false;
-        }
 
-        if (this.head.getData().equals(data)){
+        boolean isDeleted = true;
+
+        if (this.size == 1 && this.head.getData().equals(data)){
+            this.head = null;
+            this.tail = null;
+        }
+        else if (this.head.getData().equals(data))
             this.head = this.head.getNext();
-            this.size--;
-            return true;
-        }
-
         else
-            return deleteRecursion(data, this.head, 1);
+            isDeleted = deleteRecursion(data, this.head, 1);
+
+        if (isDeleted)
+            --this.size;
+
+        return isDeleted;
     }
 
     private boolean deleteRecursion(T data, Node<T> current, int index) {
@@ -176,7 +182,6 @@ public class MySinglyLinkedList<T> implements MyLinkedList<T> {
                 this.tail = current;
                 this.tail.setNext(null);
             }
-            --this.size;
             return true;
         }
 

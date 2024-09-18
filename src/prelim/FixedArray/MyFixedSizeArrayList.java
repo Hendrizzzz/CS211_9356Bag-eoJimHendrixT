@@ -89,6 +89,9 @@ public class MyFixedSizeArrayList<T> implements MyArrayList<T> {
      */
     @Override
     public boolean delete(T data) {
+        if (this.size == 0)
+            return false;
+
         for (int i = 0; i < 5; i++){
             if (array[i].equals(data)){
                 array[i] = null;
@@ -105,6 +108,7 @@ public class MyFixedSizeArrayList<T> implements MyArrayList<T> {
         }
         return false;
     }
+
 
 
     /**

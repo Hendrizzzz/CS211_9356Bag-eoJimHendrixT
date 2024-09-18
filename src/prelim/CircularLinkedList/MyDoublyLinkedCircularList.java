@@ -207,6 +207,8 @@ public class MyDoublyLinkedCircularList<T> implements MyLinkedList<T> {
      */
     @Override
     public int search(T data) {
+        if (this.size == 0)
+            return -1;
         if (this.head.getData().equals(data))
             return 0;
         return searchRecursion(data, this.head.getNext(), 1);

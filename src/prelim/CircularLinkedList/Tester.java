@@ -16,7 +16,6 @@ public class Tester {
     /**
      * Main method to run the interactive console program.
      *
-     * @param args command-line arguments (not used)
      */
     public void run() {
         boolean exploring = true;
@@ -81,12 +80,12 @@ public class Tester {
             output.append(currentNode.getData());
 
             // Check if the next node is not the head (end of the loop)
-            if (!currentNode.getNext().equals(integers.getHeadNode())) {
+            if (currentNode.getNext() != null &&!currentNode.getNext().equals(integers.getHeadNode())) {
                 output.append("  <-->  ");
             }
 
             currentNode = currentNode.getNext();
-        } while (!currentNode.equals(integers.getHeadNode())); // Stop when we loop back to the head
+        } while (currentNode != null && !currentNode.equals(integers.getHeadNode())); // Stop when we loop back to the head
 
         output.append(" <- Tail -> h");
         System.out.println(output.toString());
@@ -112,12 +111,12 @@ public class Tester {
             output.append(currentNode.getData());
 
             // Check if the previous node is not the tail (end of the loop)
-            if (!currentNode.getPrevious().equals(integers.getTailNode())) {
+            if (currentNode.getPrevious() != null && !currentNode.getPrevious().equals(integers.getTailNode())) {
                 output.append("  <-->  ");
             }
 
             currentNode = currentNode.getPrevious();
-        } while (!currentNode.equals(integers.getTailNode())); // Stop when we loop back to the tail
+        } while (currentNode!= null && !currentNode.equals(integers.getTailNode())); // Stop when we loop back to the tail
 
         output.append(" <- Head -> t");
         System.out.println(output.toString());
@@ -140,6 +139,7 @@ public class Tester {
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < integers.getSize(); j++) {
+                if (currentNode == null) break;
                 System.out.print(currentNode.getData() + " <--> ");
                 currentNode = currentNode.getNext();
             }

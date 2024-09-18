@@ -35,8 +35,9 @@ public class Tester {
     private void addInteger() {
         System.out.print("How many integers to add: ");
         int size = readInt(1, 100);
-        int i = 0;
-        while (i < size) {
+        int i = integers.getSize();
+        int max = size + integers.getSize();
+        while (i < max) {
             System.out.print("Integer to Add (index " + i + "): ");
             int integer = readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
             integers.insert(new CustomInteger(integer));
@@ -61,9 +62,13 @@ public class Tester {
      * Displays all integers in the list.
      */
     private void showList() {
-        System.out.println("The list: ");
-        for (int i = 0; i < integers.getSize(); i++) {
-            System.out.print(integers.get(i) + "  ");
+        if (integers.getSize() == 0)
+            System.out.println("The list is empty. ");
+        else {
+            System.out.println("The list: ");
+            for (int i = 0; i < integers.getSize(); i++) {
+                System.out.print(integers.get(i) + "  ");
+            }
         }
         System.out.println();
     }
